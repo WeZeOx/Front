@@ -13,7 +13,7 @@ const Signup: FC<MyProps> = () => {
     <>
       <Navbar/>
       <div className={css.containerSignUp}>
-        fdfdcx
+        SignUp
       </div>
     </>
   );

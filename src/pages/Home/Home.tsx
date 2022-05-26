@@ -5,9 +5,9 @@ type Home = {}
 
 const Home: FC<Home> = () => {
   return (
-    <div>
+    <>
       <Navbar/>
-    </div>
+    </>
   );
 };
 

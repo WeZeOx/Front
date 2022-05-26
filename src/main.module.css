@@ -2,6 +2,20 @@
   navbar: 75px;
 }
 
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+:-webkit-autofill {
+  color: #fff !important;
+}
+
 * {
   margin: 0;
   padding: 0;
