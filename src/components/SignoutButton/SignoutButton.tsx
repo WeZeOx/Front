@@ -1,11 +1,20 @@
 import React, { FC } from 'react';
 import css from "./SignOutButton.module.scss";
-import { Link } from "react-router-dom";
+import cookies from "js-cookie";
 
 type MyProps = {}
 
 const SignoutButton:FC<MyProps> = () => {
-  const user = "Anthony"
+  const user = cookies.get('username')
+  
+  const handleSignout = () => {
+    cookies.remove("jwt-token")
+    cookies.remove("username")
+    cookies.remove("id")
+    cookies.remove("email")
+    cookies.remove("created-at")
+    window.location.reload()
+  }
   
   return (
     <div className={css.containerButton}>
@@ -13,9 +22,8 @@ const SignoutButton:FC<MyProps> = () => {
       
         <li className={css.list}><span className={css.name}>Hello {user}</span></li>
         
-        
         <li className={css.list}>
-          <Link className={css.link} to='/signin'>Sign Out</Link>
+          <span onClick={handleSignout} className={css.link}>Sign out</span>
         </li>
       </ul>
     </div>
