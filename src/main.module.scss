@@ -1,0 +1,23 @@
+$navbarSize: 75px;
+
+:export {
+  navbar: $navbarSize;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #4a4242;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

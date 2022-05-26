@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap');
+@import "src/main.module.scss";
+
+.containerNavbar {
+  height: $navbarSize;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: #202122;
+  border-bottom: 4px solid #cea2a2;
+
+  .slogan {
+    margin-left: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #cea2a2;
+    padding: 7px;
+    font-size: 2rem;
+    font-weight: 400;
+    height: 100%;
+  }
+}

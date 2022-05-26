@@ -1,0 +1,10 @@
+@import "src/main.module.scss";
+
+.containerSignUp {
+  overflow: hidden;
+  height: calc(100vh - #{$navbarSize});
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

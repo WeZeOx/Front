@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import axios from "axios";
+import React, { FC } from 'react';
+import Navbar from "../../components/Navbar/Navbar";
+import css from "./Signup.module.scss"
 
-type sendApi = {
-  id: string,
-  title: string,
-  artist: string,
-  price: number
-}
+type MyProps = {}
 
-const Signup = () => {
-  const [data, setData] = useState<sendApi[]>([])
-  useEffect(() => {
-    axios.get('http://localhost:3333/api')
-      .then((res) => setData(res.data))
-      .catch((err) => console.log(err))
-  }, [])
+const Signup: FC<MyProps> = () => {
+  
+  const handleRegister = () => {
+  }
   
   return (
-    <div>
-      {data.map((item) => {
-        return <div>{item.price}</div>
-      })}
-      SignUp
-    </div>
+    <>
+      <Navbar/>
+      <div className={css.containerSignUp}>
+        fdfdcx
+      </div>
+    </>
   );
 };
 

@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+.containerButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.containerButton .containerList {
+  display: flex;
+  gap: 2rem;
+  margin-right: 50px;
+  align-items: center;
+}
+.containerButton .containerList .list .name {
+  margin-left: 50px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #cea2a2;
+  padding: 7px;
+  font-size: 2rem;
+  font-weight: 400;
+  height: 100%;
+}
+.containerButton .containerList .list .link {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  color: #cea2a2;
+  border-radius: 20px;
+  padding: 7px;
+  border: 2px solid #4a4242;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=SignOutButton.module.css.map */
