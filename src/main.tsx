@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import './main.module.scss'
+import './globals.scss'
 
 document.title = "Forumi"
 

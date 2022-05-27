@@ -4,7 +4,7 @@ import cookies from "js-cookie";
 
 type MyProps = {}
 
-const SignoutButton:FC<MyProps> = () => {
+const SignoutButton: FC<MyProps> = () => {
   const user = cookies.get('username')
   
   const handleSignout = () => {
@@ -19,11 +19,11 @@ const SignoutButton:FC<MyProps> = () => {
   return (
     <div className={css.containerButton}>
       <ul className={css.containerList}>
-      
+        
         <li className={css.list}><span className={css.name}>Hello {user}</span></li>
         
         <li className={css.list}>
-          <span onClick={handleSignout} className={css.link}>Sign out</span>
+          <a type="submit" onClick={handleSignout} className={css.link}>Sign Out</a>
         </li>
       </ul>
     </div>

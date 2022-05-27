@@ -1,4 +1,4 @@
-@import "src/main.module.scss";
+@import "../../globals";
 
 .containerSignIn {
   overflow: hidden;
@@ -79,7 +79,7 @@
       }
       .error {
         position: absolute;
-        margin: -40px auto 0;
+        margin: -25px auto 0;
         left: 0;
         right: 0;
         text-align: center;

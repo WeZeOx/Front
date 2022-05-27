@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap');
-@import "src/main.module.scss";
+@import "../../globals";
 
 .containerNavbar {
   height: $navbarSize;
@@ -10,6 +10,7 @@
   border-bottom: 4px solid #cea2a2;
 
   .slogan {
+    cursor: pointer;
     margin-left: 50px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     margin-right: auto;

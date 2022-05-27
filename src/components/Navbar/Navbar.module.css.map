@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["Navbar.module.scss"],"names":[],"mappings":"AAAQ;AAER;EACE;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA","file":"Navbar.module.css"}
+{"version":3,"sourceRoot":"","sources":["Navbar.module.scss","../../globals.scss"],"names":[],"mappings":"AAAQ;ACER;EACE;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;EACA;EACA;;;AAGF;EACE;;;AAGF;EACE;;;AAGF;EACE;;;AD5BF;EACE,QCJW;EDKX;EACA;EACA;EACA;EACA;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA","file":"Navbar.module.css"}

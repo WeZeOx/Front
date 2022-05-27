@@ -1,17 +1,57 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 2 | @import "src/main.module.scss";
- *   |         ^^^^^^^^^^^^^^^^^^^^^^
- *   '
- *   Navbar.module.scss 2:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 2 \2502  @import \"src/main.module.scss\";\d\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   Navbar.module.scss 2:9  root stylesheet";
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
 }
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+:-webkit-autofill {
+  color: #fff !important;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #4a4242;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.containerNavbar {
+  height: 75px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background: #202122;
+  border-bottom: 4px solid #cea2a2;
+}
+.containerNavbar .slogan {
+  cursor: pointer;
+  margin-left: 50px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #cea2a2;
+  padding: 7px;
+  font-size: 2rem;
+  font-weight: 400;
+  height: 100%;
+}
+
+/*# sourceMappingURL=Navbar.module.css.map */

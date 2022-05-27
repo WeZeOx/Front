@@ -15,24 +15,26 @@ type loginResponse = {
   Token: string
 }
 
-const Signin: FC<loginResponse> = () => {
+type MyProps = {}
+
+const Signin: FC<MyProps> = () => {
   let navigate = useNavigate();
-  
-  useEffect(() => {
-    if (cookies.get('jwt-token') !== undefined) return navigate('/home')
-  },[]);
   
   const [errorMessage, setErrorMessage] = useState("")
   const email = useRef() as React.MutableRefObject<HTMLInputElement>;
   const password = useRef() as React.MutableRefObject<HTMLInputElement>;
   
-  const handleSucessFullLogin = (response: loginResponse) => {
+  useEffect(() => {
+    if (cookies.get('jwt-token') !== undefined) return navigate('/home')
+  }, []);
+  
+  const handleSuccessfulLogin = (response: loginResponse) => {
     if (!response.Auth || response.Message !== "Authenticated") return
     cookies.set("jwt-token", response.Token, { expires: 3 })
     cookies.set("username", response.username, { expires: 3 })
     cookies.set("id", response.id, { expires: 3 })
     cookies.set("email", response.email, { expires: 3 })
-    cookies.set("created-at", response.email, { expires: 3 })
+    cookies.set("created-at", response.CreatedAt.toString(), { expires: 3 })
     navigate("/home")
   }
   
@@ -41,7 +43,7 @@ const Signin: FC<loginResponse> = () => {
     axios.post("http://localhost:3333/api/users/signin/", {
       "email": email.current.value,
       "password": password.current.value
-    }).then(response => handleSucessFullLogin(response.data))
+    }).then(({ data }) => handleSuccessfulLogin(data))
       .catch((err) => setErrorMessage(err.response.data.Message))
   }
   

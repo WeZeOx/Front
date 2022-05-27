@@ -5,13 +5,11 @@
   justify-content: center;
   align-items: center;
 
-
   .containerList {
     display: flex;
     gap: 2rem;
     margin-right: 50px;
-  align-items: center;
-
+    align-items: center;
 
     .list {
       .name {
@@ -29,6 +27,7 @@
       }
 
       .link {
+        cursor: pointer;
         font-family: 'Plus Jakarta Sans', sans-serif;
         color: #cea2a2;
         border-radius: 20px;
