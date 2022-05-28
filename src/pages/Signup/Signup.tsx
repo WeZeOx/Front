@@ -5,14 +5,23 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookie";
 
-type registerResponse = {
+type stateResponse = {
+  message: string,
+  auth: boolean,
+  token: string
+}
+
+type userResponse = {
   id: string,
+  created_at: Date,
   username: string
-  CreatedAt: Date,
   email: string
-  Message: string,
-  Auth: boolean,
-  Token: string
+}
+
+type registerResponse = {
+  state: stateResponse
+  user: userResponse
+  
 }
 
 type MyProps = {}
@@ -32,12 +41,12 @@ const Signup: FC<MyProps> = () => {
   
   
   const handleSuccessfulRegister = (response: registerResponse) => {
-    if (!response.Auth || response.Message !== "Authorized") return
-    cookies.set("jwt-token", response.Token, { expires: 3 })
-    cookies.set("username", response.username, { expires: 3 })
-    cookies.set("id", response.id, { expires: 3 })
-    cookies.set("email", response.email, { expires: 3 })
-    cookies.set("created-at", response.CreatedAt.toString(), { expires: 3 })
+      if (!response.state.auth || response.state.message !== "Authorized") return
+    cookies.set("jwt-token", response.state.token, { expires: 3 })
+    cookies.set("username", response.user.username, { expires: 3 })
+    cookies.set("id", response.user.id, { expires: 3 })
+    cookies.set("email", response.user.email, { expires: 3 })
+    cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
     navigate("/home")
   }
   
@@ -83,7 +92,6 @@ const Signup: FC<MyProps> = () => {
                 <input className={css.input} type="password" id="verifyPassword" required ref={verifyPassword}/>
               </div>
             </div>
-            
             
             <div className={css.parentSubmit}>
               <div className={css.container}>

@@ -5,14 +5,23 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
 
-type loginResponse = {
+type stateResponse = {
+  message: string,
+  auth: boolean,
+  token: string
+}
+
+type userResponse = {
   id: string,
+  created_at: Date,
   username: string
-  CreatedAt: Date,
   email: string
-  Message: string,
-  Auth: boolean,
-  Token: string
+}
+
+type loginResponse = {
+  state: stateResponse
+  user: userResponse
+
 }
 
 type MyProps = {}
@@ -29,12 +38,14 @@ const Signin: FC<MyProps> = () => {
   }, []);
   
   const handleSuccessfulLogin = (response: loginResponse) => {
-    if (!response.Auth || response.Message !== "Authenticated") return
-    cookies.set("jwt-token", response.Token, { expires: 3 })
-    cookies.set("username", response.username, { expires: 3 })
-    cookies.set("id", response.id, { expires: 3 })
-    cookies.set("email", response.email, { expires: 3 })
-    cookies.set("created-at", response.CreatedAt.toString(), { expires: 3 })
+    console.log(response)
+    if (!response.state.auth || response.state.message !== "Authorized") return
+    console.log('end')
+    cookies.set("jwt-token", response.state.token, { expires: 3 })
+    cookies.set("username", response.user.username, { expires: 3 })
+    cookies.set("id", response.user.id, { expires: 3 })
+    cookies.set("email", response.user.email, { expires: 3 })
+    cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
     navigate("/home")
   }
   
