@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import css from "./SignOutButton.module.scss";
 import cookies from "js-cookie";
+import { useEditorJWT } from "../../utils/jwt.store";
 
 type MyProps = {}
 
 const SignoutButton: FC<MyProps> = () => {
   const user = cookies.get('username')
+  const useEditor = useEditorJWT()
   
   const handleSignout = () => {
     cookies.remove("jwt-token")
@@ -13,7 +15,7 @@ const SignoutButton: FC<MyProps> = () => {
     cookies.remove("id")
     cookies.remove("email")
     cookies.remove("created-at")
-    window.location.reload()
+    useEditor.removeJwtToken()
   }
   
   return (

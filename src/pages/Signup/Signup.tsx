@@ -4,6 +4,7 @@ import css from "./Signup.module.scss"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookie";
+import { useEditorJWT } from "../../utils/jwt.store";
 
 type stateResponse = {
   message: string,
@@ -28,6 +29,7 @@ type MyProps = {}
 
 const Signup: FC<MyProps> = () => {
   const navigate = useNavigate()
+  const useEditor = useEditorJWT()
   const [errorMessage, setErrorMessage] = useState("")
   
   const email = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -36,9 +38,8 @@ const Signup: FC<MyProps> = () => {
   const username = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
-    if (cookies.get('jwt-token') !== undefined) return navigate('/home')
+    if (useEditor.getJwtToken() !== '') return navigate('/home')
   }, []);
-  
   
   const handleSuccessfulRegister = (response: registerResponse) => {
       if (!response.state.auth || response.state.message !== "Authorized") return
@@ -47,6 +48,9 @@ const Signup: FC<MyProps> = () => {
     cookies.set("id", response.user.id, { expires: 3 })
     cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
+  
+    useEditor.setJwtToken(response.state.token ?? "")
+    
     navigate("/home")
   }
   

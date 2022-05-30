@@ -4,6 +4,7 @@ import css from "./Sign.module.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
+import { useEditorJWT } from "../../utils/jwt.store";
 
 type stateResponse = {
   message: string,
@@ -27,25 +28,25 @@ type loginResponse = {
 type MyProps = {}
 
 const Signin: FC<MyProps> = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const useEditor = useEditorJWT()
   
   const [errorMessage, setErrorMessage] = useState("")
   const email = useRef() as React.MutableRefObject<HTMLInputElement>;
   const password = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
-    if (cookies.get('jwt-token') !== undefined) return navigate('/home')
+    if (useEditor.getJwtToken() !== '') return navigate('/home')
   }, []);
   
   const handleSuccessfulLogin = (response: loginResponse) => {
-    console.log(response)
     if (!response.state.auth || response.state.message !== "Authorized") return
-    console.log('end')
     cookies.set("jwt-token", response.state.token, { expires: 3 })
     cookies.set("username", response.user.username, { expires: 3 })
     cookies.set("id", response.user.id, { expires: 3 })
     cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
+    useEditor.setJwtToken(response.state.token ?? "")
     navigate("/home")
   }
   

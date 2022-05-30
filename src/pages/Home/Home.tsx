@@ -2,6 +2,8 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import cookies from "js-cookie";
+import { useEditorJWT } from "../../utils/jwt.store";
+import axiosInstance from '../../utils/axiosInstance'
 
 
 type userData = {
@@ -27,6 +29,7 @@ type posts = {
 type HomeProps = {}
 
 const Home: FC<HomeProps> = () => {
+  const useEditor = useEditorJWT()
   const [posts, setPosts] = useState<posts[]>([])
   const [errorMessage, setErrorMessage] = useState("")
   
@@ -39,16 +42,13 @@ const Home: FC<HomeProps> = () => {
   const postText = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   const handleSENDPOST = () => {
+    
     axios.post("http://localhost:3333/api/posts/createpost", {
       "id": cookies.get("id") ?? "",
       "content": postText.current.value
-    }, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": cookies.get('jwt-token') ?? "",
-      }
     }).then(({ data }) => {
-      const post: posts = {
+      console.log(data)
+      setPosts((posts) => [...posts, {
         post: data.post,
         user: {
           created_at: new Date(cookies.get("created-at") ?? ""),
@@ -56,11 +56,9 @@ const Home: FC<HomeProps> = () => {
           username: cookies.get("username") ?? "",
           id: cookies.get("id") ?? ""
         }
-      }
-      setPosts((posts) => [...posts, post])
+      }])
     }).catch((err) => setErrorMessage(err.response.data.message))
   }
-  
   
   return (
     <>
@@ -71,7 +69,7 @@ const Home: FC<HomeProps> = () => {
           <div>{post.post.content}</div>
         </div>
       )).reverse()}
-      <span style={{color: "red"}}>{errorMessage}</span>
+      <span style={{ color: "red" }}>{errorMessage}</span>
       <input ref={postText}/>
       <button onClick={handleSENDPOST}>ggggggggggg</button>
     </>

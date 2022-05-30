@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import css from "./SignInAndUpButton.module.scss"
 
 type MyProps = {}
 
 const SignInAndUpButton: FC<MyProps> = () => {
+
   return (
     <div className={css.containerButton}>
       <ul className={css.containerList}>
