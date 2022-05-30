@@ -8,11 +8,11 @@ import { useEditorJWT } from "../../utils/jwt.store";
 type Navbar = {}
 
 const Navbar: FC<Navbar> = () => {
-  const useEditor = useEditorJWT()
+  const jwtStore = useEditorJWT()
   return (
     <div className={css.containerNavbar}>
-      <Link to='/home' className={css.slogan}>Forumi Be Happy</Link>
-      {useEditor.getJwtToken() ? <SignoutButton/> : <SigninAndUpButton/>}
+      <Link to='/home' className={css.slogan}><span>Face2book |</span><span>Write your story book</span></Link>
+      {jwtStore.getJwtToken() ? <SignoutButton/> : <SigninAndUpButton/>}
     </div>
   );
 };

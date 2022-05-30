@@ -1,17 +1,14 @@
 import axios from "axios";
-import { useEditorJWT } from "./jwt.store";
-const useEditor = useEditorJWT()
 
-const axiosInstance = axios.create({
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": useEditor.getJwtToken(),
-  }
-});
+export const axiosInterceptor = (token: string) => {
+  axios.interceptors.request.use((config) => {
+    config.headers = {
+      "Content-Type": "application/json",
+      "Authorization": token,
+    };
+    return config
+  }, function (error) {
+    return Promise.reject(error);
+  })
+}
 
-axiosInstance.interceptors.request.use(req => {
-  return req
-})
-
-
-export default axiosInstance;

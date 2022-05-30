@@ -5,15 +5,16 @@ import Home from "./pages/Home/Home";
 import Signin from "./pages/Signin/Signin";
 import { useEditorJWT } from "./utils/jwt.store";
 import { useEffect } from "react";
+import { axiosInterceptor } from "./utils/axiosInstance";
 
 function App() {
-  const useEditor = useEditorJWT()
+  const jwtStore = useEditorJWT()
   const localJwtToken = localStorage.getItem('jwt-token')
   
   useEffect(() => {
-    useEditor.setJwtToken(localJwtToken ?? "")
-  }, [])
-  
+    axiosInterceptor(jwtStore.token)
+    jwtStore.setJwtToken(localJwtToken ?? "")
+  },[jwtStore.token])
   return (
     <BrowserRouter>
       <Routes>

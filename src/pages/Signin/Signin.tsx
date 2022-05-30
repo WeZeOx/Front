@@ -29,14 +29,14 @@ type MyProps = {}
 
 const Signin: FC<MyProps> = () => {
   const navigate = useNavigate();
-  const useEditor = useEditorJWT()
+  const jwtStore = useEditorJWT()
   
   const [errorMessage, setErrorMessage] = useState("")
   const email = useRef() as React.MutableRefObject<HTMLInputElement>;
   const password = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
-    if (useEditor.getJwtToken() !== '') return navigate('/home')
+    if (jwtStore.getJwtToken() !== '') return navigate('/home')
   }, []);
   
   const handleSuccessfulLogin = (response: loginResponse) => {
@@ -46,7 +46,7 @@ const Signin: FC<MyProps> = () => {
     cookies.set("id", response.user.id, { expires: 3 })
     cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
-    useEditor.setJwtToken(response.state.token ?? "")
+    jwtStore.setJwtToken(response.state.token ?? "")
     navigate("/home")
   }
   

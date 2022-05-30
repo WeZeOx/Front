@@ -7,7 +7,7 @@ type MyProps = {}
 
 const SignoutButton: FC<MyProps> = () => {
   const user = cookies.get('username')
-  const useEditor = useEditorJWT()
+  const jwtStore = useEditorJWT()
   
   const handleSignout = () => {
     cookies.remove("jwt-token")
@@ -15,7 +15,7 @@ const SignoutButton: FC<MyProps> = () => {
     cookies.remove("id")
     cookies.remove("email")
     cookies.remove("created-at")
-    useEditor.removeJwtToken()
+    jwtStore.removeJwtToken()
   }
   
   return (
