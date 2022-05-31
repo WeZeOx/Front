@@ -5,7 +5,7 @@ type userSchema = {
   id: string
 }
 
-const GetUsernamePost: FC<userSchema> = ({ id }) => {
+const PostInput: FC<userSchema> = ({ id }) => {
   const [username, setUsername] = useState<string>("");
   
   useEffect(() => {
@@ -16,4 +16,4 @@ const GetUsernamePost: FC<userSchema> = ({ id }) => {
   return <span>{username}</span>
 };
 
-export default GetUsernamePost;
+export default PostInput;

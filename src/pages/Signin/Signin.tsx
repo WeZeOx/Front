@@ -47,6 +47,7 @@ const Signin: FC<MyProps> = () => {
     cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
     jwtStore.setJwtToken(response.state.token ?? "")
+    // window.location.reload()
     navigate("/home")
   }
   
@@ -56,7 +57,7 @@ const Signin: FC<MyProps> = () => {
       "email": email.current.value,
       "password": password.current.value
     }).then(({ data }) => handleSuccessfulLogin(data))
-      .catch((err) => setErrorMessage(err.response.data.Message))
+      .catch((err) => setErrorMessage(err.response.data.message))
   }
   
   return (

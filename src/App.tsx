@@ -9,12 +9,11 @@ import { axiosInterceptor } from "./utils/axiosInstance";
 
 function App() {
   const jwtStore = useEditorJWT()
-  const localJwtToken = localStorage.getItem('jwt-token')
   
   useEffect(() => {
     axiosInterceptor(jwtStore.token)
-    jwtStore.setJwtToken(localJwtToken ?? "")
-  },[jwtStore.token])
+  }, [jwtStore.token])
+  
   return (
     <BrowserRouter>
       <Routes>

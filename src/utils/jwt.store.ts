@@ -19,5 +19,5 @@ export const useEditorJWT = create<jwtContentState>((set) => ({
     localStorage.removeItem(EditorContentLocalStorageKey);
     set({ token: '' });
   },
-  token: localStorage.getItem(EditorContentLocalStorageKey) ?? ''
+  token: (() => localStorage.getItem(EditorContentLocalStorageKey) ?? '')()
 }));
