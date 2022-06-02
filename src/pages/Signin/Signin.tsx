@@ -41,13 +41,11 @@ const Signin: FC<MyProps> = () => {
   
   const handleSuccessfulLogin = (response: loginResponse) => {
     if (!response.state.auth || response.state.message !== "Authorized") return
-    cookies.set("jwt-token", response.state.token, { expires: 3 })
     cookies.set("username", response.user.username, { expires: 3 })
     cookies.set("id", response.user.id, { expires: 3 })
     cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
     jwtStore.setJwtToken(response.state.token ?? "")
-    // window.location.reload()
     navigate("/home")
   }
   

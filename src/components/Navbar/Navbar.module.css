@@ -32,6 +32,7 @@ a {
 }
 
 .containerNavbar {
+  margin: 0;
   height: 75px;
   display: flex;
   justify-content: center;
@@ -53,16 +54,19 @@ a {
   font-weight: 400;
   height: 100%;
 }
+.containerNavbar .slogan span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .containerNavbar .slogan span:first-child {
+  height: 100%;
   margin-right: 7px;
 }
 .containerNavbar .slogan span:last-child {
   color: #cea2a2;
   margin-left: 11px;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.5rem;
 }
 

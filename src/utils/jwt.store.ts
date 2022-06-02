@@ -1,4 +1,5 @@
 import create from 'zustand';
+import cookies from "js-cookie";
 
 export type jwtContentState = {
   token: string
@@ -10,14 +11,14 @@ export type jwtContentState = {
 const EditorContentLocalStorageKey = 'jwt-token';
 
 export const useEditorJWT = create<jwtContentState>((set) => ({
-  getJwtToken: () => localStorage.getItem(EditorContentLocalStorageKey) ?? '',
+  getJwtToken: () => cookies.get(EditorContentLocalStorageKey) ?? '',
   setJwtToken: (str) => {
-    localStorage.setItem(EditorContentLocalStorageKey, str);
+    cookies.set("jwt-token", str, { expires: 3 })
     set({token: str});
   },
   removeJwtToken: () => {
-    localStorage.removeItem(EditorContentLocalStorageKey);
+    cookies.remove(EditorContentLocalStorageKey)
     set({ token: '' });
   },
-  token: (() => localStorage.getItem(EditorContentLocalStorageKey) ?? '')()
+  token: (() => cookies.get(EditorContentLocalStorageKey) ?? '')()
 }));

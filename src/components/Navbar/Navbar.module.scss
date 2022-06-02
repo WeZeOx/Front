@@ -2,6 +2,7 @@
 @import "../../utils/globals";
 
 .containerNavbar {
+  margin: 0;
   height: $navbarSize;
   display: flex;
   justify-content: center;
@@ -23,8 +24,14 @@
     font-weight: 400;
     height: 100%;
 
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     span:first-child {
+      height: 100%;
       margin-right: 7px;
     }
 
@@ -32,9 +39,6 @@
       color: #cea2a2;
       margin-left: 11px;
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-size: 1.5rem;
     }
   }
