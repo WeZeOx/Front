@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+
+::placeholder {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
+}
+
+.containerModal {
+  position: absolute;
+  border-radius: 15px;
+  width: 416px;
+  height: 300px;
+  background: #202122;
+
+  .upModal {
+    display: flex;
+    align-items: center;
+
+    .closeIcon {
+      font-size: 2rem;
+      cursor: pointer;
+      margin-left: auto;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    .title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      padding-block: 12px;
+    }
+  }
+
+  .middleModal {
+    margin-top: 6px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+
+    & > span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    & > div {
+      margin: 10px;
+    }
+  }
+
+  .form {
+
+
+    .area {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-top: 5px;
+      font-size: 1.5rem;
+      padding-inline: 5px;
+      color: #cea2a2;
+      width: 100%;
+      height: 125px;
+      resize: none;
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    .containerButton {
+      display: flex;
+      justify-content: center;
+
+      .button {
+        pointer-events: auto;
+        cursor: pointer;
+
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: #cea2a2;
+        border-radius: 20px;
+        padding: 7px;
+        padding-inline: 50px;
+        background: none;
+        border: 2px solid #4a4242;
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+
+      .disabled {
+        pointer-events: none;
+
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: #cea2a2;
+        border-radius: 20px;
+        padding: 7px;
+        padding-inline: 50px;
+        background: none;
+        border: 2px solid #4a4242;
+        font-size: 1.25rem;
+        font-weight: 400;
+      }
+    }
+  }
+}

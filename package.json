@@ -8,6 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "avvvatars-react": "^0.4.2",
     "axios": "^0.27.2",
     "js-cookie": "^3.0.1",
@@ -19,6 +23,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
+    "@types/luxon": "^2.3.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",

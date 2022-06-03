@@ -16,7 +16,6 @@ type userResponse = {
   id: string,
   created_at: Date,
   username: string
-  email: string
 }
 
 type registerResponse = {
@@ -46,11 +45,8 @@ const Signup: FC<MyProps> = () => {
     cookies.set("jwt-token", response.state.token, { expires: 3 })
     cookies.set("username", response.user.username, { expires: 3 })
     cookies.set("id", response.user.id, { expires: 3 })
-    cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
-  
     useEditor.setJwtToken(response.state.token ?? "")
-    
     navigate("/home")
   }
   
@@ -62,7 +58,7 @@ const Signup: FC<MyProps> = () => {
       "verify_password": verifyPassword.current.value,
       "email": email.current.value
     }).then(({ data }) => handleSuccessfulRegister(data))
-      .catch((err) => setErrorMessage(err.response.data.Message))
+      .catch((err) => setErrorMessage(err.response.data.message))
   }
   
   return (

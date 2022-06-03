@@ -16,7 +16,6 @@ type userResponse = {
   id: string,
   created_at: Date,
   username: string
-  email: string
 }
 
 type loginResponse = {
@@ -43,7 +42,6 @@ const Signin: FC<MyProps> = () => {
     if (!response.state.auth || response.state.message !== "Authorized") return
     cookies.set("username", response.user.username, { expires: 3 })
     cookies.set("id", response.user.id, { expires: 3 })
-    cookies.set("email", response.user.email, { expires: 3 })
     cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
     jwtStore.setJwtToken(response.state.token ?? "")
     navigate("/home")

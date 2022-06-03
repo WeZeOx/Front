@@ -1,5 +1,7 @@
 $navbarSize: 75px;
 
+
+
 input {
   -webkit-appearance: none;
   outline: none;
@@ -10,10 +12,6 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-:-webkit-autofill {
-  color: #fff !important;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +20,7 @@ input[type="submit"] {
 
 body {
   background: #4a4242;
+  padding-bottom: 50px;
 }
 
 li {

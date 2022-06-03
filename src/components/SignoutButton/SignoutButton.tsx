@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import css from "./SignOutButton.module.scss";
 import cookies from "js-cookie";
-import admin from '/red.png'
 import { useEditorJWT } from "../../utils/jwt.store";
 import axios from "axios";
 

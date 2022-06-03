@@ -7,7 +7,7 @@ import css from './Home.module.scss'
 
 export type Posts = {
   id: string
-  created_at_post: Date,
+  created_at: string,
   username: string,
   content: string,
   like: string,
@@ -20,6 +20,8 @@ type HomeProps = {}
 
 const Home: FC<HomeProps> = () => {
   const [posts, setPosts] = useState<Posts[]>([])
+  const [numberOfPost, setNumberOfPost] = useState<number>(-12)
+  
   useEffect(() => {
     axios.get("http://localhost:3333/api/posts/all")
       .then(({ data }) => setPosts(data))
@@ -34,12 +36,13 @@ const Home: FC<HomeProps> = () => {
       />
       <div className={css.containerPost}>
         {posts
-          .slice(-12)
+          .slice(numberOfPost)
           .map((post, idx) => (
-            <CardPost
+            <><CardPost
               post={post}
-              key={idx}
-            />
+              key={idx}/>
+              {/*<hr style={{width: "50%"}}/>*/}
+            </>
           )).reverse()}
       </div>
     </>
