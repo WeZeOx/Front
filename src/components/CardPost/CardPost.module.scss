@@ -21,10 +21,21 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    width: 100%;
+
+    .iconAdmin {
+      padding: 7px;
+      margin-left: auto;
+      color: $colorContentPost;
+      font-size: 1rem;
+      cursor: pointer;
+
+    }
 
     .contentUser {
       display: flex;
       flex-direction: column;
+
 
       .username {
         font-size: 1.2rem;
@@ -38,10 +49,13 @@
         color: $colorAdmin;
       }
     }
+
+
   }
 
   .contentPost {
     margin-top: 15px;
+
     color: $colorContentPost;
     font-size: 1.2rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -49,8 +63,23 @@
   }
 
   .containerCategory {
-    .category {
+    margin-top: 15px;
+    display: flex;
+    padding-inline: 4px;
+    flex-wrap: wrap;
+    column-gap: 10px;
 
+    .category {
+      color: $colorContentPost;
+      font-size: 1rem;
+      text-align: center;
+      white-space: nowrap;
+      border-radius: 25px;
+      padding: 5px;
+      padding-inline: 10px;
+      background-color: $backgroundGeneral;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin-bottom: 7px;
     }
   }
 }

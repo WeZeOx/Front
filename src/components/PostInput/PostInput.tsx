@@ -17,7 +17,8 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
   const handleSendPost = (contentPost: string) => {
     axios.post("http://localhost:3333/api/posts/createpost", {
       "id": cookies.get("id") ?? "",
-      "content": contentPost
+      "content": contentPost,
+      "category": "js"
     }).then(({ data }) => {
       const newPost: Posts = {
         id: cookies.get("id") ?? "",
@@ -26,6 +27,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
         content: contentPost,
         like: "",
         post_id: data.post.post_id,
+        category: "js",
         admin: data.admin,
       }
       onPost(newPost)
@@ -38,7 +40,11 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
         <div className={css.containerSendPost}>
           <ModalPost addPost={(str: string) => handleSendPost(str)}/>
         </div>
-        : (<span className={css.notConnected}>You need to be connected to post a story book</span>)}
+        : (
+          <div className={css.containerNotConnected}>
+          You need to be connected to send a story
+        </div>
+        )}
     </div>
   );
 };

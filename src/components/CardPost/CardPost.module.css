@@ -50,6 +50,14 @@ a {
   display: flex;
   align-items: center;
   gap: 15px;
+  width: 100%;
+}
+.containerChildPost .whoami .iconAdmin {
+  padding: 7px;
+  margin-left: auto;
+  color: #cea2a2;
+  font-size: 1rem;
+  cursor: pointer;
 }
 .containerChildPost .whoami .contentUser {
   display: flex;
@@ -69,6 +77,25 @@ a {
   margin-top: 15px;
   color: #cea2a2;
   font-size: 1.2rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-bottom: 7px;
+}
+.containerChildPost .containerCategory {
+  margin-top: 15px;
+  display: flex;
+  padding-inline: 4px;
+  flex-wrap: wrap;
+  column-gap: 10px;
+}
+.containerChildPost .containerCategory .category {
+  color: #cea2a2;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 25px;
+  padding: 5px;
+  padding-inline: 10px;
+  background-color: #4a4242;
   font-family: "Plus Jakarta Sans", sans-serif;
   margin-bottom: 7px;
 }

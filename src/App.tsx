@@ -4,13 +4,13 @@ import NotFound from "./pages/NotFound/NotFound";
 import Home from "./pages/Home/Home";
 import Signin from "./pages/Signin/Signin";
 import { useEditorJWT } from "./utils/jwt.store";
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { axiosInterceptor } from "./utils/axiosInstance";
 
 function App() {
   const jwtStore = useEditorJWT()
   
-  useEffect(() => {
+  useLayoutEffect(() => {
     axiosInterceptor(jwtStore.token)
   }, [jwtStore.token])
   

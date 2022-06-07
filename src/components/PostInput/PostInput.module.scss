@@ -17,4 +17,21 @@
     width: 42%;
     height: 100%;
   }
+
+  .containerNotConnected {
+    display: flex;
+    justify-content: center;
+    color: $colorContentPost;
+    font-size: 1.5rem;
+    padding-block: 5px;
+    background: $backgroundNavbar;
+    margin-top: 20px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    width: 42%;
+  }
+
+
 }
