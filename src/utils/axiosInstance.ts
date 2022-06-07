@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let id: any
+let id: number
 
 export const axiosInterceptor = (token: string) => {
   axios.interceptors.request.eject(id)

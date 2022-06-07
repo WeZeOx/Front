@@ -6,15 +6,15 @@ import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
 
 export type Posts = {
-  id: string
+  id: string,
   created_at: string,
   username: string,
   content: string,
   like: string,
-  post_id: string
+  post_id: string,
+  category: string,
   admin: boolean
 }
-
 
 type HomeProps = {}
 
@@ -24,7 +24,9 @@ const Home: FC<HomeProps> = () => {
   
   useEffect(() => {
     axios.get("http://localhost:3333/api/posts/all")
-      .then(({ data }) => setPosts(data))
+      .then(({ data }) => {
+        setPosts(data)
+      })
       .catch((err) => console.log(err))
   }, [])
   
@@ -38,11 +40,10 @@ const Home: FC<HomeProps> = () => {
         {posts
           .slice(numberOfPost)
           .map((post, idx) => (
-            <><CardPost
+            <CardPost
               post={post}
-              key={idx}/>
-              {/*<hr style={{width: "50%"}}/>*/}
-            </>
+              key={idx}
+            />
           )).reverse()}
       </div>
     </>

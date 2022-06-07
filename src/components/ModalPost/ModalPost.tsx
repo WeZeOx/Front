@@ -1,47 +1,39 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import css from './ModalPost.module.scss'
-import Avvvatars from "avvvatars-react";
-import cookies from "js-cookie";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import TextareaAutosize from 'react-textarea-autosize';
 
 type MyProps = {
-  deleteModal: () => void
   addPost: (str: string) => void
 }
 
-const ModalPost: FC<MyProps> = ({ addPost, deleteModal }) => {
-  const [contentPost, setContentPost] = useState<string>('')
+const ModalPost: FC<MyProps> = ({ addPost }) => {
+  const [postText, setPostText] = useState<string>("")
   
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    addPost(contentPost)
+  const onSubmit = () => {
+    addPost(postText)
+    setPostText("")
   }
-  
-  useEffect(() => {
-    document.body.style.overflow = 'hidden'
-  }, [])
   
   return (
     <div className={css.containerModal}>
-      <div className={css.upModal}>
-        <span className={css.title}>Create your own story</span>
-        <FontAwesomeIcon onClick={() => deleteModal()} className={css.closeIcon} icon={faClose}/>
+      <div className={css.up}>
+        <span className={css.titlePost}>Welcome !</span>
       </div>
-      <hr/>
-      <div className={css.middleModal}>
-        <Avvvatars style='shape' value={cookies.get('username') ?? ""}/>
-        <span>{cookies.get('username')}</span>
+      <div className={css.middle}>
+        <TextareaAutosize
+          maxLength={150}
+          placeholder="What's up !"
+          value={postText}
+          onChange={(e) => setPostText(e.target.value)}
+          className={css.inputUser}
+        />
       </div>
-      
-      <form className={css.form} onSubmit={(e: FormEvent<HTMLFormElement>) => onSubmit(e)}>
-          
-          <textarea className={css.area} placeholder="Write your story here"
-                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContentPost(e.target.value)}/>
-        <div className={css.containerButton}>
-          <button className={contentPost.length > 0 ? css.button : css.disabled} type="submit">Create Post</button>
-        </div>
-      </form>
+      <div className={css.down}>
+        <span className={css.counter}>{postText.length > 0 ? `${postText.length} / 150` : ""}</span>
+        <button style={{ cursor: postText.length > 0 ? "pointer" : "not-allowed" }} className={css.button}
+                onClick={onSubmit}>Post your story
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,11 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { Link } from "react-router-dom";
 import css from "./Navbar.module.scss"
 import SignoutButton from "../SignoutButton/SignoutButton";
 import SigninAndUpButton from "../SignInAndUpButton/SignInAndUpButton"
 import { useEditorJWT } from "../../utils/jwt.store";
-import axios from "axios";
-import cookies from "js-cookie";
 
 type Navbar = {}
 

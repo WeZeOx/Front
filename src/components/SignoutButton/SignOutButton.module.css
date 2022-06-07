@@ -1,4 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .containerButton {
   display: flex;
   justify-content: center;

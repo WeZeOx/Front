@@ -15,8 +15,11 @@ input[type=submit] {
   box-sizing: border-box;
 }
 
-body {
+html {
   background: #4a4242;
+}
+
+body {
   padding-bottom: 50px;
 }
 

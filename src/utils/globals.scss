@@ -1,6 +1,9 @@
 $navbarSize: 75px;
-
-
+$backgroundNavbar: #202122;
+$backgroundGeneral: #4a4242;
+$colorAdmin: #ffb4b4;
+$colorContentPost: #cea2a2;
+$colorBackForm: #202122;
 
 input {
   -webkit-appearance: none;
@@ -18,8 +21,12 @@ input[type="submit"] {
   box-sizing: border-box;
 }
 
+html {
+  background: $backgroundGeneral;
+}
+
 body {
-  background: #4a4242;
+
   padding-bottom: 50px;
 }
 

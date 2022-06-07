@@ -67,9 +67,7 @@ const Signup: FC<MyProps> = () => {
       <div className={css.containerSignUp}>
         <div className={css.backForm}>
           <span className={css.title}>Register</span>
-          
           <form className={css.middleForm} onSubmit={(e: FormEvent<HTMLFormElement>) => handleRegister(e)}>
-            
             <div className={css.two}>
               <div className={css.parentInput}>
                 <label className={css.label} htmlFor="email">Email</label>
@@ -80,27 +78,22 @@ const Signup: FC<MyProps> = () => {
                 <input className={css.input} type="password" id="password" required ref={password}/>
               </div>
             </div>
-            
             <div className={css.two}>
               <div className={css.parentInput}>
                 <label className={css.label} htmlFor="username">Username</label>
                 <input className={css.input} type="text" id="username" required ref={username}/>
               </div>
-              
               <div className={css.parentInput}>
                 <label className={css.label} htmlFor="verifyPassword">Verify Password</label>
                 <input className={css.input} type="password" id="verifyPassword" required ref={verifyPassword}/>
               </div>
             </div>
-            
             <div className={css.parentSubmit}>
               <div className={css.container}>
                 <span className={css.error}>{errorMessage}</span>
                 <input className={css.submit} type="submit" value="Register"/>
                 <span className={css.info}>
-                  <div>
-                        Your already have an account ?<Link to='/signin'>Sign in</Link>
-                  </div>
+                  <div>Your already have an account ?<Link to='/signin'>Sign in</Link></div>
                 </span>
               </div>
             </div>

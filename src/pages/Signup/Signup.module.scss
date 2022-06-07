@@ -12,7 +12,7 @@
     height: 72%;
     -webkit-box-shadow: 9px 6px 9px -2px rgba(0, 0, 0, 0.25);
     box-shadow: 9px 6px 9px -2px rgba(0, 0, 0, 0.25);
-    background: #202122;
+    background: $colorBackForm;
 
     .title {
       position: relative;
@@ -20,7 +20,7 @@
       display: flex;
       justify-content: center;
       text-align: center;
-      color: #cea2a2;
+      color: $colorContentPost;
       padding: 7px;
       font-size: 2.25rem;
       font-weight: 400;
@@ -31,7 +31,7 @@
         position: absolute;
         width: 130px;
         height: 3px;
-        background: #cea2a2;
+        background: $colorContentPost;
         bottom: -7px
       }
     }
@@ -62,7 +62,7 @@
             justify-content: center;
             align-items: end;
             text-align: center;
-            color: #cea2a2;
+            color: $colorContentPost;
             padding: 7px;
             font-size: 1.75rem;
             font-weight: 400;
@@ -71,14 +71,14 @@
           .input {
             padding-left: 5px;
             padding-bottom: 5px;
-            color: #cea2a2;
+            color: $colorContentPost;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 1.2rem;
             font-weight: 400;
             width: 74%;
             height: 22px;
             margin: 0 13%;
-            background: #202122;
+            background: $colorBackForm;
           }
 
         }
@@ -110,14 +110,14 @@
           .submit {
             font-family: 'Plus Jakarta Sans', sans-serif;
             text-align: center;
-            color: #cea2a2;
+            color: $colorContentPost;
             font-size: 1.25rem;
             font-weight: 400;
             margin: 10px 0 13px 0;
             padding-block: 7px;
             padding-inline: 108.5px;
-            background: #202122;
-            border: 2px solid #4a4242;
+            background: $colorBackForm;
+            border: 2px solid $backgroundGeneral;
             border-radius: 20px;
             width: 100%;
           }
@@ -125,7 +125,7 @@
           .info {
             text-align: center;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #cea2a2;
+            color: $colorContentPost;
             padding: 7px;
             font-size: .8rem;
             font-weight: 400;
@@ -137,7 +137,7 @@
 
             & > * > * {
               font-family: 'Plus Jakarta Sans', sans-serif;
-              color: #cea2a2;
+              color: $colorContentPost;
               text-align: center;
               padding: 10px;
               font-size: 1rem;

@@ -1,4 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 .containerChildPost {
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
@@ -8,8 +40,8 @@
   background: #202122;
   word-break: break-all;
   padding: 10px;
-  width: 50%;
-  margin: 0 25%;
+  width: 42%;
+  margin: 0 29%;
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-start;

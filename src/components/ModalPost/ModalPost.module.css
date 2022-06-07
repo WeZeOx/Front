@@ -1,89 +1,99 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 ::placeholder {
   font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .containerModal {
-  position: absolute;
   border-radius: 15px;
-  width: 416px;
-  height: 300px;
+  height: max-content;
   background: #202122;
 }
-.containerModal .upModal {
-  display: flex;
-  align-items: center;
-}
-.containerModal .upModal .closeIcon {
-  font-size: 2rem;
-  cursor: pointer;
-  margin-left: auto;
-  padding: 10px;
-  margin-right: 10px;
-}
-.containerModal .upModal .title {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  padding: 10px;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  padding-block: 12px;
-}
-.containerModal .middleModal {
-  margin-top: 6px;
-  gap: 6px;
-  display: flex;
-  align-items: center;
-}
-.containerModal .middleModal > span {
-  font-family: "Plus Jakarta Sans", sans-serif;
-}
-.containerModal .middleModal > div {
-  margin: 10px;
-}
-.containerModal .form .area {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  margin-top: 5px;
-  font-size: 1.5rem;
-  padding-inline: 5px;
-  color: #cea2a2;
+.containerModal .up {
   width: 100%;
-  height: 125px;
-  resize: none;
-  background: none;
-  border: none;
-  outline: none;
-}
-.containerModal .form .containerButton {
+  font-family: "Plus Jakarta Sans", sans-serif;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
-.containerModal .form .containerButton .button {
-  pointer-events: auto;
-  cursor: pointer;
+.containerModal .up .titlePost {
+  font-size: 1.2rem;
+  margin: 5px;
+  color: white;
+  font-weight: bold;
+}
+.containerModal .middle {
+  width: 100%;
+  display: grid;
+}
+.containerModal .middle .inputUser {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  padding: 3px;
+  height: 60px;
+  overflow: hidden;
+  resize: none;
+  width: 100%;
+  color: #cea2a2;
+  background: #202122;
+}
+.containerModal .down {
+  display: flex;
+  margin-right: 5px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.containerModal .down .button {
+  height: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
   color: #cea2a2;
   border-radius: 20px;
   padding: 7px;
-  padding-inline: 50px;
   background: none;
   border: 2px solid #4a4242;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
+  margin-top: 15px;
+  margin-bottom: 7px;
 }
-.containerModal .form .containerButton .disabled {
-  pointer-events: none;
-  font-family: "Plus Jakarta Sans", sans-serif;
+.containerModal .down .counter {
   color: #cea2a2;
-  border-radius: 20px;
-  padding: 7px;
-  padding-inline: 50px;
-  background: none;
-  border: 2px solid #4a4242;
-  font-size: 1.25rem;
-  font-weight: 400;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-left: 5px;
 }
 
 /*# sourceMappingURL=ModalPost.module.css.map */

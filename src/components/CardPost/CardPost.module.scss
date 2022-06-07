@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+@import "../../utils/globals";
 
 .containerChildPost {
   border-top: 1px solid gray;
@@ -6,11 +7,11 @@
   border-left: 2px solid gray;
   border-right: 2px solid gray;
   display: flex;
-  background: #202122;
+  background: $backgroundNavbar;
   word-break: break-all;
   padding: 10px;
-  width: 50%;
-  margin: 0 25%;
+  width: 42%;
+  margin: 0 29%;
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,15 +35,22 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-weight: bold;
         letter-spacing: 0.1em;
-        color: #ffb4b4;
+        color: $colorAdmin;
       }
     }
   }
+
   .contentPost {
     margin-top: 15px;
-    color: #cea2a2;
+    color: $colorContentPost;
     font-size: 1.2rem;
     font-family: 'Plus Jakarta Sans', sans-serif;
     margin-bottom: 7px;
+  }
+
+  .containerCategory {
+    .category {
+
+    }
   }
 }

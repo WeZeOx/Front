@@ -1,59 +1,20 @@
+@import "../../utils/globals";
 
 .containerPost {
-  background: #202122;
-  z-index: 10;
-  font-size: 1.5rem;
-  height: 65px;
-  border-radius: 12px;
   display: flex;
-  resize: none;
-  color: #cea2a2;
   justify-content: center;
-  width: max-content;
-  margin: 25px 33%;
-  flex-direction: row;
-  gap: 1rem;
+  align-items: center;
+  flex-direction: column;
 
-  .left {
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 10px;
-    margin-right: auto;
-    align-items: center;
 
-    & + * {
-      margin-left: 12px;
-    }
-  }
-
-  .right {
-    display: flex;
-    justify-content: center;
-    margin-left: auto;
-    align-items: center;
-    margin-right: 15px;
-
-    .input {
-      font-size: 1.5rem;
-      outline: none;
-      width: 400px;
-      height: 45px;
-      padding-left: 10px;
-      border-radius: 25px;
-      color: #cea2a2;
-      border: 2px solid #cea2a2;
-      background: #202122;
-
-      * {
-        display: flex;
-        align-items: center;
-      }
-    }
-  } ;
-    .notConnected {
-      display: flex;
-      align-items: center;
-      padding: 7px;
-      font-weight: 400;
+  .containerSendPost {
+    background: $backgroundNavbar;
+    margin-top: 20px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    width: 42%;
+    height: 100%;
   }
 }
