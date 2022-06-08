@@ -1,25 +1,19 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import css from './ModalPost.module.scss'
 import TextareaAutosize from 'react-textarea-autosize';
 
-type MyProps = {
-  addPost: (str: string) => void
+type ModalProps = {
+  addPost: (contentPost: string, categoryTag: string) => void
 }
 
-const ModalPost: FC<MyProps> = ({ addPost }) => {
+const ModalPost: FC<ModalProps> = ({ addPost }) => {
   const [postText, setPostText] = useState<string>("")
-  const [jsxButtons, setJsxButton] = useState<any[]>([])
-  
+  const categoryTag = useRef() as React.MutableRefObject<HTMLInputElement>
   
   const onSubmit = () => {
-    addPost(postText)
+    addPost(postText, categoryTag.current.value)
     setPostText("")
   }
-  
-  const test = () => {
-    setPostText((prev) => [...prev, <button></button>])
-  }
-  
   
   return (
     <div className={css.containerModal}>
@@ -28,23 +22,25 @@ const ModalPost: FC<MyProps> = ({ addPost }) => {
       </div>
       <div className={css.middle}>
         <TextareaAutosize
-          maxLength={150}
-          placeholder="What's up !"
+          placeholder="What's your next story ?!"
           value={postText}
           onChange={(e) => setPostText(e.target.value)}
           className={css.inputUser}
         />
       </div>
       <div className={css.down}>
-        <span className={css.counter}>{postText.length > 0 ? `${postText.length} / 150` : ""}</span>
+        <div className={css.tagContainer}>
+          <input
+            placeholder=""
+            ref={categoryTag}
+            className={css.inputTag}
+          />
+        </div>
         <button
           style={{ cursor: postText.length > 0 ? "pointer" : "not-allowed" }}
           className={css.button}
           onClick={onSubmit}>Post your story
         </button>
-      </div>
-      <div>
-        <button onClick={test}>Add tag</button>
       </div>
     </div>
   );

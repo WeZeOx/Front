@@ -11,6 +11,7 @@ type CardPostProps = {
 }
 
 const CardPost: FC<CardPostProps> = ({ post, userConnectedIsAdmin }) => {
+  console.log("rerendee")
   return (
     <div className={css.containerChildPost}>
       <div className={css.whoami}>

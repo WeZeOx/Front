@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
@@ -22,25 +22,23 @@ type HomeProps = {}
 const Home: FC<HomeProps> = () => {
   const [posts, setPosts] = useState<Posts[]>([])
   const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
-  const [numberOfPost, setNumberOfPost] = useState<number>(-12)
+  const [numberOfPost, setNumberOfPost] = useState<number>(12)
   const jwtStore = useEditorJWT()
 
-  const addMore = () => {
-    if (document?.scrollingElement?.scrollHeight === undefined) return
-    if (window.innerHeight + document.documentElement.scrollTop > document?.scrollingElement?.scrollHeight) {
-      setNumberOfPost(numberOfPost - 10)
+    
+    const addMore = () => {
+    if (window.innerHeight + document.documentElement.scrollTop + 1 > (document?.scrollingElement?.scrollHeight ?? 0)) {
+      setNumberOfPost((prevNumberOfPost) => prevNumberOfPost + 10)
     }
   }
   
   useEffect(() => {
-    axios.get("http://localhost:3333/api/posts/all")
-      .then(({ data }) => {
-        setPosts(data)
-      })
+    axios.get<Posts[]>("http://localhost:3333/api/posts/all")
+      .then(({ data }) => setPosts(data.reverse()))
       .catch((err) => console.log(err))
     window.addEventListener('scroll', addMore)
     return () => window.removeEventListener('scroll', addMore)
-  }, [numberOfPost])
+  }, [])
   
   useEffect(() => {
     axios.get(`http://localhost:3333/api/users/isadmin/`)
@@ -52,18 +50,18 @@ const Home: FC<HomeProps> = () => {
     <>
       <Navbar/>
       <PostInput
-        onPost={(newPost: Posts) => setPosts((posts) => [...posts, newPost])}
+        onPost={(newPost: Posts) => setPosts((posts) => [newPost, ...posts])}
       />
       <div className={css.containerPost}>
         {posts
-          .slice(numberOfPost)
+          .slice(0, numberOfPost)
           .map((post, idx) => (
             <CardPost
               userConnectedIsAdmin={userConnectedIsAdmin}
               post={post}
               key={idx}
             />
-          )).reverse()}
+          ))}
       </div>
     </>
   );

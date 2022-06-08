@@ -76,6 +76,22 @@ a {
   align-items: center;
   justify-content: flex-end;
 }
+.containerModal .down .tagContainer {
+  display: flex;
+  flex-direction: column;
+}
+.containerModal .down .tagContainer .inputTag {
+  color: #cea2a2;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 8px 12px 7px 30px;
+  height: 26px;
+  background: #202122;
+}
+.containerModal .down .tagContainer .inputTag::placeholder {
+  font-size: 1rem;
+}
 .containerModal .down .button {
   height: 100%;
   font-family: "Plus Jakarta Sans", sans-serif;
@@ -86,14 +102,9 @@ a {
   border: 2px solid #4a4242;
   font-size: 1rem;
   font-weight: 400;
-  margin-top: 15px;
+  margin-top: 8px;
+  margin-right: 12px;
   margin-bottom: 7px;
-}
-.containerModal .down .counter {
-  color: #cea2a2;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-left: 5px;
 }
 
 /*# sourceMappingURL=ModalPost.module.css.map */

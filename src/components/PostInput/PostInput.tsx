@@ -14,11 +14,15 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
   const [errorMessage, setErrorMessage] = useState<string>("")
   const jwtStore = useEditorJWT()
   
-  const handleSendPost = (contentPost: string) => {
+  const handleSendPost = (contentPost: string, tag: string) => {
+    
+    console.log(contentPost)
+    console.log(tag)
+    
     axios.post("http://localhost:3333/api/posts/createpost", {
       "id": cookies.get("id") ?? "",
       "content": contentPost,
-      "category": "js"
+      "category": tag
     }).then(({ data }) => {
       const newPost: Posts = {
         id: cookies.get("id") ?? "",
@@ -27,7 +31,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
         content: contentPost,
         like: "",
         post_id: data.post.post_id,
-        category: "js",
+        category: data.post.category,
         admin: data.admin,
       }
       onPost(newPost)
@@ -38,12 +42,10 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
     <div className={css.containerPost}>
       {jwtStore.getJwtToken() ?
         <div className={css.containerSendPost}>
-          <ModalPost addPost={(str: string) => handleSendPost(str)}/>
+          <ModalPost addPost={(contentPost: string, categoryTag: string) => handleSendPost(contentPost, categoryTag)}/>
         </div>
         : (
-          <div className={css.containerNotConnected}>
-          You need to be connected to send a story
-        </div>
+          <div className={css.containerNotConnected}>You need to be connected to send a story</div>
         )}
     </div>
   );
