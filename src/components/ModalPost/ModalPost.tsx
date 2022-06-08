@@ -7,12 +7,14 @@ type ModalProps = {
 }
 
 const ModalPost: FC<ModalProps> = ({ addPost }) => {
-  const [postText, setPostText] = useState<string>("")
   const categoryTag = useRef() as React.MutableRefObject<HTMLInputElement>
+  const postText = useRef() as React.MutableRefObject<HTMLTextAreaElement>
+
   
   const onSubmit = () => {
-    addPost(postText, categoryTag.current.value)
-    setPostText("")
+    addPost(postText.current.value, categoryTag.current.value)
+    categoryTag.current.value = ""
+    postText.current.value = ""
   }
   
   return (
@@ -23,23 +25,24 @@ const ModalPost: FC<ModalProps> = ({ addPost }) => {
       <div className={css.middle}>
         <TextareaAutosize
           placeholder="What's your next story ?!"
-          value={postText}
-          onChange={(e) => setPostText(e.target.value)}
+          ref={postText}
           className={css.inputUser}
         />
       </div>
       <div className={css.down}>
         <div className={css.tagContainer}>
           <input
-            placeholder=""
+            placeholder="Category : humor, anime"
             ref={categoryTag}
             className={css.inputTag}
           />
         </div>
         <button
-          style={{ cursor: postText.length > 0 ? "pointer" : "not-allowed" }}
+          style={{ cursor: postText?.current?.value?.length > 0 ? "pointer" : "not-allowed" }}
           className={css.button}
-          onClick={onSubmit}>Post your story
+          onClick={onSubmit}
+        >
+          Post your story
         </button>
       </div>
     </div>

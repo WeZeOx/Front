@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import axios from "axios";
 import css from './PostInput.module.scss'
 import cookies from "js-cookie";
@@ -12,17 +12,14 @@ type PostInputProps = {
 
 const PostInput: FC<PostInputProps> = ({ onPost }) => {
   const [errorMessage, setErrorMessage] = useState<string>("")
+  // const test = useRef<>()
   const jwtStore = useEditorJWT()
   
-  const handleSendPost = (contentPost: string, tag: string) => {
-    
-    console.log(contentPost)
-    console.log(tag)
-    
+  const handleSendPost = (contentPost: string, categoryTag: string) => {
     axios.post("http://localhost:3333/api/posts/createpost", {
       "id": cookies.get("id") ?? "",
       "content": contentPost,
-      "category": tag
+      "category": categoryTag
     }).then(({ data }) => {
       const newPost: Posts = {
         id: cookies.get("id") ?? "",

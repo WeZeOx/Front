@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
@@ -13,7 +13,7 @@ export type Posts = {
   content: string,
   like: string,
   post_id: string,
-  category: string,
+  categories: string,
   admin: boolean
 }
 
@@ -24,9 +24,14 @@ const Home: FC<HomeProps> = () => {
   const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
   const [numberOfPost, setNumberOfPost] = useState<number>(12)
   const jwtStore = useEditorJWT()
-
-    
-    const addMore = () => {
+  const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
+  
+  const removeItemInList = (post: Posts) => {
+    const index = posts.indexOf(post)
+    setPosts((prevState: Posts[]) => prevState.filter((state: Posts, idx: number) => idx !== index))
+  }
+  
+  const addMore = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 > (document?.scrollingElement?.scrollHeight ?? 0)) {
       setNumberOfPost((prevNumberOfPost) => prevNumberOfPost + 10)
     }
@@ -50,15 +55,19 @@ const Home: FC<HomeProps> = () => {
     <>
       <Navbar/>
       <PostInput
-        onPost={(newPost: Posts) => setPosts((posts) => [newPost, ...posts])}
+        onPost={(newPost: Posts) => setPosts((posts: Posts[]) => [newPost, ...posts])}
       />
       <div className={css.containerPost}>
         {posts
           .slice(0, numberOfPost)
-          .map((post, idx) => (
+          .map((post: Posts, idx: number) => (
             <CardPost
+              indexCardPost={idx}
+              idxModalToShow={idxModalToShow}
+              setIdxModalToShow={setIdxModalToShow}
               userConnectedIsAdmin={userConnectedIsAdmin}
               post={post}
+              onDeletePost={(post: Posts) => removeItemInList(post)}
               key={idx}
             />
           ))}
