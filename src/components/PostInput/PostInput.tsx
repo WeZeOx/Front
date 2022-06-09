@@ -12,7 +12,6 @@ type PostInputProps = {
 
 const PostInput: FC<PostInputProps> = ({ onPost }) => {
   const [errorMessage, setErrorMessage] = useState<string>("")
-  // const test = useRef<>()
   const jwtStore = useEditorJWT()
   
   const handleSendPost = (contentPost: string, categoryTag: string) => {
@@ -28,7 +27,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
         content: contentPost,
         like: "",
         post_id: data.post.post_id,
-        category: data.post.category,
+        categories: data.post.category,
         admin: data.admin,
       }
       onPost(newPost)

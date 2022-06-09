@@ -22,7 +22,8 @@ const CardPost: FC<CardPostProps> = ({
   onDeletePost,
   idxModalToShow,
   setIdxModalToShow,
-  indexCardPost }) => {
+  indexCardPost
+}) => {
   
   const handleDeletePost = () => {
     axios.delete(`http://localhost:3333/api/posts/deletepost/${post.post_id}`)
@@ -41,23 +42,27 @@ const CardPost: FC<CardPostProps> = ({
         </div>
         
         <div className={css.containerModal}>
-          {userConnectedIsAdmin || post.id === cookies.get('id') ? (
-            <FontAwesomeIcon
-              onClick={() => {
-                if (indexCardPost === idxModalToShow) setIdxModalToShow(null)
-                else setIdxModalToShow(indexCardPost)
-              }}
-              className={css.iconAdmin}
-              icon={faEllipsisVertical}
-            />
-          ) : (
-            <FontAwesomeIcon
-              onClick={() => console.log('pff you are not an admin')}
-              className={css.iconAdmin}
-              icon={faEllipsisVertical}
-            />
-          )}
-          {idxModalToShow === indexCardPost ? <div>LALALALLA</div> : null}
+          <FontAwesomeIcon
+            onClick={() => {
+              if (indexCardPost === idxModalToShow) setIdxModalToShow(null)
+              else setIdxModalToShow(indexCardPost)
+            }}
+            className={css.iconAdmin}
+            icon={faEllipsisVertical}
+          />
+          
+          {idxModalToShow === indexCardPost && userConnectedIsAdmin  ?
+            (<div className={css.containerPopup}>ADMIN panel</div>)
+            : null}
+          
+          {idxModalToShow === indexCardPost && !userConnectedIsAdmin  && post.user_id === cookies.get('id') ?
+              (<div className={css.containerPopup}>CUSTOM panel</div>) :
+            null}
+          
+          {idxModalToShow === indexCardPost && !userConnectedIsAdmin  && !(post.user_id === cookies.get('id')) ?
+              (<div className={css.containerPopup}>NOT YOUR</div>) :
+            null}
+          
         </div>
       </div>
       

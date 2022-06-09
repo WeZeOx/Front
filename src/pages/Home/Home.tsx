@@ -7,7 +7,7 @@ import css from './Home.module.scss'
 import { useEditorJWT } from "../../utils/jwt.store";
 
 export type Posts = {
-  id: string,
+  user_id: string,
   created_at: string,
   username: string,
   content: string,
@@ -23,8 +23,8 @@ const Home: FC<HomeProps> = () => {
   const [posts, setPosts] = useState<Posts[]>([])
   const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
   const [numberOfPost, setNumberOfPost] = useState<number>(12)
-  const jwtStore = useEditorJWT()
   const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
+  const jwtStore = useEditorJWT()
   
   const removeItemInList = (post: Posts) => {
     const index = posts.indexOf(post)
