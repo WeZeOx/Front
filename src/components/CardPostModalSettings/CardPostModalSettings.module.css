@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.containerPopup {
+  position: absolute;
+  z-index: 100;
+  width: 250px;
+  height: max-content;
+  padding-bottom: 10px;
+  background: #746c6c;
+}
+.containerPopup > span {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  margin-top: 7px;
+  font-size: 1.1rem;
+  justify-content: center;
+  align-items: center;
+  color: #cea2a2;
+}
+.containerPopup::after {
+  content: "";
+  top: -5px;
+  left: 5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: #746c6c;
+  transform: rotate(45deg);
+}
+.containerPopup .containerCross {
+  margin: 5px;
+}
+.containerPopup .containerCross .closeIcon {
+  margin-left: 220px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+.containerPopup .containerCross .chooses {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+.containerPopup .containerCross .chooses .choose {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  gap: 20px;
+}
+.containerPopup .containerCross .chooses .choose .icon {
+  font-size: 1.25rem;
+  color: red;
+}
+.containerPopup .containerCross .chooses .choose .title {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #cea2a2;
+}
+.containerPopup .containerCross::after {
+  content: "";
+  top: -5px;
+  left: 5px;
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  background: #746c6c;
+  transform: rotate(45deg);
+}
+
+/*# sourceMappingURL=CardPostModalSettings.module.css.map */

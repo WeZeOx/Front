@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
 import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
 import { useEditorJWT } from "../../utils/jwt.store";
+import cookies from "js-cookie";
 
 export type Posts = {
   user_id: string,
@@ -26,9 +26,19 @@ const Home: FC<HomeProps> = () => {
   const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
   const jwtStore = useEditorJWT()
   
-  const removeItemInList = (post: Posts) => {
-    const index = posts.indexOf(post)
-    setPosts((prevState: Posts[]) => prevState.filter((state: Posts, idx: number) => idx !== index))
+  const unlikePost = (post: Posts) => {
+    post.like = post.like.split(',').filter((reserch) => reserch !== cookies.get('id')).join(',')
+    setPosts((prevState) => [...prevState, post])
+  }
+  
+  const likePost = (post: Posts) => {
+    post.like += cookies.get('id') + ","
+    setPosts((prevState) => [...prevState, post])
+  }
+  
+  const removePost = (post: Posts) => {
+    const indexPost = posts.indexOf(post)
+    setPosts((prevState: Posts[]) => prevState.filter((state: Posts, idx: number) => idx !== indexPost))
   }
   
   const addMore = () => {
@@ -53,7 +63,6 @@ const Home: FC<HomeProps> = () => {
   
   return (
     <>
-      <Navbar/>
       <PostInput
         onPost={(newPost: Posts) => setPosts((posts: Posts[]) => [newPost, ...posts])}
       />
@@ -67,7 +76,9 @@ const Home: FC<HomeProps> = () => {
               setIdxModalToShow={setIdxModalToShow}
               userConnectedIsAdmin={userConnectedIsAdmin}
               post={post}
-              onDeletePost={(post: Posts) => removeItemInList(post)}
+              onDeletePost={(post: Posts) => removePost(post)}
+              onLike={(post: Posts) => likePost(post)}
+              onUnlike={(post: Posts) => unlikePost(post)}
               key={idx}
             />
           ))}

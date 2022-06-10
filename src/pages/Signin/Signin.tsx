@@ -1,5 +1,4 @@
 import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
-import Navbar from "../../components/Navbar/Navbar";
 import css from "./Sign.module.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -58,7 +57,6 @@ const Signin: FC<MyProps> = () => {
   
   return (
     <>
-      <Navbar/>
       <div className={css.containerSignIn}>
         <div className={css.backForm}>
           <span className={css.title}>Login</span>

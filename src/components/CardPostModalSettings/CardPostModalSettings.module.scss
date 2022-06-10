@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+@import "../../utils/globals";
+
+.containerPopup {
+  position: absolute;
+  z-index: 100;
+  width: 250px;
+  height: max-content;
+  padding-bottom: 10px;
+  background: #746c6c;
+
+  & > span {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    margin-top: 7px;
+    font-size: 1.1rem;
+    justify-content: center;
+    align-items: center;
+    color: $colorContentPost;
+  }
+
+  &::after {
+    content: "";
+    top: -5px;
+    left: 5px;
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background: #746c6c;
+    transform: rotate(45deg);
+  }
+
+  .containerCross {
+    margin: 5px;
+
+    .closeIcon {
+      margin-left: 220px;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .chooses {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+
+      .choose {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        gap: 20px;
+
+        .icon {
+          font-size: 1.25rem;
+          color: red;
+        }
+
+        .title {
+          cursor: pointer;
+          font-size: 1.3rem;
+          color: $colorContentPost;
+        }
+      }
+    }
+
+    &::after {
+      content: "";
+      top: -5px;
+      left: 5px;
+      position: absolute;
+      height: 10px;
+      width: 10px;
+      background: #746c6c;
+      transform: rotate(45deg);
+    }
+  }
+}

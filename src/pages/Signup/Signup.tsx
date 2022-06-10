@@ -1,5 +1,4 @@
 import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
-import Navbar from "../../components/Navbar/Navbar";
 import css from "./Signup.module.scss"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -63,7 +62,6 @@ const Signup: FC<MyProps> = () => {
   
   return (
     <>
-      <Navbar/>
       <div className={css.containerSignUp}>
         <div className={css.backForm}>
           <span className={css.title}>Register</span>

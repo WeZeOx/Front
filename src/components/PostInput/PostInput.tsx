@@ -1,9 +1,9 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC, useState } from 'react';
 import axios from "axios";
 import css from './PostInput.module.scss'
 import cookies from "js-cookie";
 import { Posts } from "../../pages/Home/Home";
-import ModalPost from "../ModalPost/ModalPost";
+import PostCreator from "../PostCreator/PostCreator";
 import { useEditorJWT } from "../../utils/jwt.store";
 
 type PostInputProps = {
@@ -21,7 +21,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
       "category": categoryTag
     }).then(({ data }) => {
       const newPost: Posts = {
-        id: cookies.get("id") ?? "",
+        user_id: cookies.get("id") ?? "",
         username: cookies.get('username') ?? "",
         created_at: data.post.created_at_post,
         content: contentPost,
@@ -38,7 +38,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
     <div className={css.containerPost}>
       {jwtStore.getJwtToken() ?
         <div className={css.containerSendPost}>
-          <ModalPost addPost={(contentPost: string, categoryTag: string) => handleSendPost(contentPost, categoryTag)}/>
+          <PostCreator addPost={(contentPost: string, categoryTag: string) => handleSendPost(contentPost, categoryTag)}/>
         </div>
         : (
           <div className={css.containerNotConnected}>You need to be connected to send a story</div>

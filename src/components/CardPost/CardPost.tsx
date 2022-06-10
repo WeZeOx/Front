@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import { Posts } from "../../pages/Home/Home";
 import Avvvatars from 'avvvatars-react'
 import css from "./CardPost.module.scss"
@@ -6,29 +6,51 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import cookies from "js-cookie";
+import CardPostModalSettings from "../CardPostModalSettings/CardPostModalSettings";
+import { AiFillHeart, AiOutlineHeart, IoChatbubbleOutline } from "react-icons/all";
+import { Link } from "react-router-dom";
 
 type CardPostProps = {
   post: Posts
   userConnectedIsAdmin: boolean
   indexCardPost: number
-  onDeletePost: (postId: Posts) => void
+  onDeletePost: (post: Posts) => void
+  onLike: (post: Posts) => void
+  onUnlike: (post: Posts) => void
   idxModalToShow: number | null,
-  setIdxModalToShow: React.Dispatch<React.SetStateAction<number | null>>
+  setIdxModalToShow: Dispatch<SetStateAction<number | null>>
 }
 
 const CardPost: FC<CardPostProps> = ({
   post,
   userConnectedIsAdmin,
   onDeletePost,
+  onLike,
+  onUnlike,
   idxModalToShow,
   setIdxModalToShow,
   indexCardPost
 }) => {
   
+  const handleUnlikePost = () => {
+    axios.patch(`http://localhost:3333/api/posts/unlike/${post.post_id}`)
+      .then(({ data }) => console.log(data))
+      .catch((err) => console.log(err))
+    onUnlike(post)
+  }
+  
+  const handleLikePost = () => {
+    axios.patch(`http://localhost:3333/api/posts/like/${post.post_id}`)
+      .then(({ data }) => data)
+      .catch((err) => console.log(err))
+    onLike(post)
+  }
+  
   const handleDeletePost = () => {
     axios.delete(`http://localhost:3333/api/posts/deletepost/${post.post_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
+    setIdxModalToShow(null)
     onDeletePost(post)
   }
   
@@ -51,22 +73,31 @@ const CardPost: FC<CardPostProps> = ({
             icon={faEllipsisVertical}
           />
           
-          {idxModalToShow === indexCardPost && userConnectedIsAdmin  ?
-            (<div className={css.containerPopup}>ADMIN panel</div>)
-            : null}
+          {idxModalToShow === indexCardPost && userConnectedIsAdmin ?
+            <CardPostModalSettings
+              wantToShow="ADMIN_PANEL"
+              handleDeletePost={handleDeletePost}
+              setIdxModalToShow={setIdxModalToShow}
+            /> : null}
           
-          {idxModalToShow === indexCardPost && !userConnectedIsAdmin  && post.user_id === cookies.get('id') ?
-              (<div className={css.containerPopup}>CUSTOM panel</div>) :
-            null}
+          {idxModalToShow === indexCardPost && !userConnectedIsAdmin && post.user_id === cookies.get('id') ?
+            <CardPostModalSettings
+              wantToShow="USER_PANEL"
+              handleDeletePost={handleDeletePost}
+              setIdxModalToShow={setIdxModalToShow}
+            /> : null}
           
-          {idxModalToShow === indexCardPost && !userConnectedIsAdmin  && !(post.user_id === cookies.get('id')) ?
-              (<div className={css.containerPopup}>NOT YOUR</div>) :
-            null}
-          
+          {idxModalToShow === indexCardPost && !userConnectedIsAdmin && !(post.user_id === cookies.get('id')) ?
+            <CardPostModalSettings
+              wantToShow="NOT_AUTHORIZED"
+              handleDeletePost={handleDeletePost}
+              setIdxModalToShow={setIdxModalToShow}
+            /> : null}
         </div>
       </div>
       
-      <div className={css.contentPost}>{post.content}</div>
+      <span className={css.contentPost}>{post.content}</span>
+      
       <div className={css.containerCategory}>
         {post?.categories?.length > 0 ?
           post?.categories
@@ -76,6 +107,23 @@ const CardPost: FC<CardPostProps> = ({
             ))
           : ""
         }
+        
+        <div className={css.containerLikeAndComment}>
+          <div className={css.like}>
+            <span className={css.iconLike}>{post.like.split(',').includes(cookies.get('id') ?? "") ?
+              <AiFillHeart onClick={handleUnlikePost}/> :
+              <AiOutlineHeart onClick={handleLikePost}/>
+            }</span>
+            
+            <span className={css.numberOfLike}>{post.like.split(',').length - 1}</span>
+          </div>
+          
+          <Link className={css.comment} to={`/post/${post.post_id}`}>
+            <span className={css.iconComment}><IoChatbubbleOutline/></span>
+            <span className={css.numberOfComment}>0</span>
+          </Link>
+        </div>
+      
       </div>
     </div>
   );

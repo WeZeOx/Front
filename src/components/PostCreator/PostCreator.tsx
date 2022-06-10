@@ -1,12 +1,12 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
-import css from './ModalPost.module.scss'
+import css from './PostCreator.module.scss'
 import TextareaAutosize from 'react-textarea-autosize';
 
 type ModalProps = {
   addPost: (contentPost: string, categoryTag: string) => void
 }
 
-const ModalPost: FC<ModalProps> = ({ addPost }) => {
+const PostCreator: FC<ModalProps> = ({ addPost }) => {
   const categoryTag = useRef() as React.MutableRefObject<HTMLInputElement>
   const [postText, setPostText] = useState<string>("")
   
@@ -24,6 +24,7 @@ const ModalPost: FC<ModalProps> = ({ addPost }) => {
       <div className={css.middle}>
         <TextareaAutosize
           placeholder="What's your next story ?!"
+          value={postText}
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setPostText(e.target.value)}
           className={css.inputUser}
         />
@@ -48,4 +49,4 @@ const ModalPost: FC<ModalProps> = ({ addPost }) => {
   );
 };
 
-export default ModalPost;
+export default PostCreator;
