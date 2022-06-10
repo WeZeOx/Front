@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import css from "./Navbar.module.scss"
 import SignoutButton from "../SignoutButton/SignoutButton";
 import SigninAndUpButton from "../SignInAndUpButton/SignInAndUpButton"
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 
 type Navbar = {}
 
@@ -12,7 +12,7 @@ const Navbar: FC<Navbar> = () => {
   return (
     <div className={css.containerNavbar}>
       <Link to='/home' className={css.slogan}><span>Face2book |</span><span>Write your story book</span></Link>
-      {jwtStore.getJwtToken() ? <SignoutButton/> : <SigninAndUpButton/>}
+      {jwtStore.token ? <SignoutButton/> : <SigninAndUpButton/>}
     </div>
   );
 };

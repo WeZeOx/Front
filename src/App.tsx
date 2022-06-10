@@ -3,7 +3,7 @@ import Signup from "./pages/Signup/Signup";
 import NotFound from "./pages/NotFound/NotFound";
 import Home from "./pages/Home/Home";
 import Signin from "./pages/Signin/Signin";
-import { useEditorJWT } from "./utils/jwt.store";
+import { useEditorJWT } from "./hooks/jwt.store";
 import { useLayoutEffect } from "react";
 import { axiosInterceptor } from "./utils/axiosInstance";
 import SinglePost from "./pages/SinglePost/SinglePost";

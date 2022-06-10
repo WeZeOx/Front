@@ -3,7 +3,7 @@ import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
 import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 import cookies from "js-cookie";
 
 export type Posts = {
@@ -14,7 +14,8 @@ export type Posts = {
   like: string,
   post_id: string,
   categories: string,
-  admin: boolean
+  admin: boolean,
+  number_of_post: number
 }
 
 type HomeProps = {}

@@ -3,7 +3,7 @@ import css from "./Signup.module.scss"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookie";
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 
 type stateResponse = {
   message: string,
@@ -36,7 +36,7 @@ const Signup: FC<MyProps> = () => {
   const username = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
-    if (useEditor.getJwtToken() !== '') return navigate('/home')
+    if (useEditor.token !== '') return navigate('/home')
   }, []);
   
   const handleSuccessfulRegister = (response: registerResponse) => {

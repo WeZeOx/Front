@@ -3,7 +3,7 @@ import css from "./Sign.module.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 
 type stateResponse = {
   message: string,
@@ -34,7 +34,7 @@ const Signin: FC<MyProps> = () => {
   const password = useRef() as React.MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
-    if (jwtStore.getJwtToken() !== '') return navigate('/home')
+    if (jwtStore.token !== '') return navigate('/home')
   }, []);
   
   const handleSuccessfulLogin = (response: loginResponse) => {

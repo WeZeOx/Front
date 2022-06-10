@@ -4,7 +4,7 @@ import css from './PostInput.module.scss'
 import cookies from "js-cookie";
 import { Posts } from "../../pages/Home/Home";
 import PostCreator from "../PostCreator/PostCreator";
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 
 type PostInputProps = {
   onPost: (newPost: Posts) => void
@@ -29,6 +29,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
         post_id: data.post.post_id,
         categories: data.post.category,
         admin: data.admin,
+        number_of_post: 0
       }
       onPost(newPost)
     }).catch((err) => setErrorMessage(err.response.data.message))
@@ -36,7 +37,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
   
   return (
     <div className={css.containerPost}>
-      {jwtStore.getJwtToken() ?
+      {jwtStore.token ?
         <div className={css.containerSendPost}>
           <PostCreator addPost={(contentPost: string, categoryTag: string) => handleSendPost(contentPost, categoryTag)}/>
         </div>

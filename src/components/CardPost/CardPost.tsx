@@ -120,7 +120,7 @@ const CardPost: FC<CardPostProps> = ({
           
           <Link className={css.comment} to={`/post/${post.post_id}`}>
             <span className={css.iconComment}><IoChatbubbleOutline/></span>
-            <span className={css.numberOfComment}>0</span>
+            <span className={css.numberOfComment}>{post.number_of_post}</span>
           </Link>
         </div>
       

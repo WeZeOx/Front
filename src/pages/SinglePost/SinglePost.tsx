@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
 type MyProps = {}
@@ -6,8 +6,14 @@ type MyProps = {}
 const SinglePost: FC<MyProps> = () => {
   const { postId } = useParams()
 
+  useEffect(() => {
+  
+  }, [])
+  
+  
   return (
     <div>
+      {postId}
     </div>
   );
 };

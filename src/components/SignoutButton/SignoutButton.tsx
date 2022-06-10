@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import css from "./SignOutButton.module.scss";
 import cookies from "js-cookie";
-import { useEditorJWT } from "../../utils/jwt.store";
+import { useEditorJWT } from "../../hooks/jwt.store";
 
 type MyProps = {}
 
