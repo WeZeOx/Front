@@ -7,10 +7,13 @@ import css from "./CardPostModalSettings.module.scss";
 type CardPostModalSettingsProps = {
   wantToShow: string,
   handleDeletePost: () => void,
-  setIdxModalToShow: Dispatch<SetStateAction<number | null>>
+  setIdxModalToShow?: Dispatch<SetStateAction<number | null>>
 }
 
+
 const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToShow, handleDeletePost, wantToShow }) => {
+  if (setIdxModalToShow === undefined) return <div>PLEASE CONTACT AN ADMINISTRATOR IF YOU SEE THIS MESSAGE</div>
+  
   switch (wantToShow) {
     case "ADMIN_PANEL":
       return (

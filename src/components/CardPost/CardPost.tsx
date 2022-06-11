@@ -8,13 +8,13 @@ import axios from "axios";
 import cookies from "js-cookie";
 import CardPostModalSettings from "../CardPostModalSettings/CardPostModalSettings";
 import { AiFillHeart, AiOutlineHeart, IoChatbubbleOutline } from "react-icons/all";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 type CardPostProps = {
   post: Posts
   userConnectedIsAdmin: boolean
-  indexCardPost: number
-  onDeletePost: (post: Posts) => void
+  indexCardPost?: number
+  onDeletePost?: (post: Posts) => void
   onLike: (post: Posts) => void
   onUnlike: (post: Posts) => void
   idxModalToShow: number | null,
@@ -31,17 +31,18 @@ const CardPost: FC<CardPostProps> = ({
   setIdxModalToShow,
   indexCardPost
 }) => {
+  const navigate = useNavigate()
   
   const handleUnlikePost = () => {
     axios.patch(`http://localhost:3333/api/posts/unlike/${post.post_id}`)
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => onUnlike(data))
       .catch((err) => console.log(err))
     onUnlike(post)
   }
   
   const handleLikePost = () => {
     axios.patch(`http://localhost:3333/api/posts/like/${post.post_id}`)
-      .then(({ data }) => data)
+      .then(({ data }) =>  onLike(data))
       .catch((err) => console.log(err))
     onLike(post)
   }
@@ -50,24 +51,25 @@ const CardPost: FC<CardPostProps> = ({
     axios.delete(`http://localhost:3333/api/posts/deletepost/${post.post_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
-    setIdxModalToShow(null)
-    onDeletePost(post)
+    if (setIdxModalToShow) setIdxModalToShow(null)
+    if (onDeletePost) onDeletePost(post)
+    navigate('/home')
   }
-  
+
   return (
-    <div className={css.containerChildPost}>
+    <div className={css.containerChildPost} style={{marginTop: window.location.href.split('/').includes('post') ? 40 : 0}}>
       <div className={css.whoami}>
-        <Avvvatars style="shape" value={post.username}/>
+        <Avvvatars style="shape" value={post?.username ?? ""}/>
         <div className={css.contentUser}>
-          <span className={css.username}>{post.username}</span>
-          {post.admin ? (<span className={css.isAdmin}>Administrator</span>) : null}
+          <span className={css.username}>{post?.username ?? ""}</span>
+          {post?.admin ? (<span className={css.isAdmin}>Administrator</span>) : null}
         </div>
         
         <div className={css.containerModal}>
           <FontAwesomeIcon
             onClick={() => {
-              if (indexCardPost === idxModalToShow) setIdxModalToShow(null)
-              else setIdxModalToShow(indexCardPost)
+              if (indexCardPost === idxModalToShow && setIdxModalToShow) setIdxModalToShow(null)
+              else if (setIdxModalToShow) setIdxModalToShow(indexCardPost ?? 0)
             }}
             className={css.iconAdmin}
             icon={faEllipsisVertical}
@@ -96,7 +98,7 @@ const CardPost: FC<CardPostProps> = ({
         </div>
       </div>
       
-      <span className={css.contentPost}>{post.content}</span>
+      <span className={css.contentPost}>{post?.content}</span>
       
       <div className={css.containerCategory}>
         {post?.categories?.length > 0 ?
@@ -110,17 +112,17 @@ const CardPost: FC<CardPostProps> = ({
         
         <div className={css.containerLikeAndComment}>
           <div className={css.like}>
-            <span className={css.iconLike}>{post.like.split(',').includes(cookies.get('id') ?? "") ?
+            <span className={css.iconLike}>{post?.like?.split(',').includes(cookies.get('id') ?? "") ?
               <AiFillHeart onClick={handleUnlikePost}/> :
               <AiOutlineHeart onClick={handleLikePost}/>
             }</span>
             
-            <span className={css.numberOfLike}>{post.like.split(',').length - 1}</span>
+            <span className={css.numberOfLike}>{post?.like.split(',').length - 1 ?? 0}</span>
           </div>
           
-          <Link className={css.comment} to={`/post/${post.post_id}`}>
+          <Link className={css.comment} to={`/post/${post?.post_id}`}>
             <span className={css.iconComment}><IoChatbubbleOutline/></span>
-            <span className={css.numberOfComment}>{post.number_of_post}</span>
+            <span className={css.numberOfComment}>{post?.number_of_post}</span>
           </Link>
         </div>
       

@@ -29,12 +29,15 @@ const Home: FC<HomeProps> = () => {
   
   const unlikePost = (post: Posts) => {
     post.like = post.like.split(',').filter((reserch) => reserch !== cookies.get('id')).join(',')
-    setPosts((prevState) => [...prevState, post])
+    setPosts((prevState) => [...prevState])
   }
   
   const likePost = (post: Posts) => {
-    post.like += cookies.get('id') + ","
-    setPosts((prevState) => [...prevState, post])
+    const newLikeField = post.like += cookies.get('id') + ","
+    setPosts((prevState) => prevState.filter((state) => state.post_id === post.post_id ? {
+      ...state,
+      [state.like]:newLikeField
+    } : state))
   }
   
   const removePost = (post: Posts) => {
