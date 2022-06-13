@@ -23,32 +23,31 @@ type Comments = {
 
 const SinglePost: FC<MyProps> = () => {
   const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
-  const [post, setPost] = useState<Posts>()
+  const [post, setPost] = useState<Posts>() ?? {}
   const [comments, setComments] = useState<Comments[]>([])
   const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
   const [contentComment, setContentComment] = useState<string>("")
-  
   const jwtStore = useEditorJWT()
   const { postId } = useParams()
   
-  const template = {
-    "user_id":"1a90129e-5a3c-4b29-8547-fce2acffd838",
-    "created_at":"2022-06-11T23:40:16.0764217+02:00",
-    "username":"WeZeOx",
-    "content":"aaa",
-    "like":"1a90129e-5a3c-4b29-8547-fce2acffd838,",
-    "post_id":"54f9a5ed-27b5-4c70-9e0b-404e41ad8cbc",
-    "categories":"",
-    "admin":true,
-    "number_of_post":0
-  }
-  
   const handleNewComment = () => {
-    axios.post('http://localhost:3333/api/comments/createcomment')
-      .then(({ data }) => setComments([...comments]))
-      .catch((err) => console.log(err))
+    axios.post('http://localhost:3333/api/comments/createcomment', {
+      "post_id":postId,
+      "content_comment":contentComment
+    }).then(({ data }) => {
+      const newComment: Comments = {
+        admin:data.isAdmin,
+        comment:{
+          content_comment:data.comment.content_comment,
+          username:data.username,
+          user_id:data.comment.user_id,
+          created_at:data.comment.created_at_comment,
+        }
+      }
+      setComments([newComment, ...comments])
+    }).catch((err) => console.log(err))
+    setContentComment("")
   }
-  
   
   useEffect(() => {
     axios.get(`http://localhost:3333/api/users/isadmin/`)
@@ -61,34 +60,37 @@ const SinglePost: FC<MyProps> = () => {
       .then(({ data }) => {
         setComments(data.Comments)
         setPost(data.Post)
-      })
-      .catch((err) => console.log(err))
+      }).catch((err) => console.log(err))
   }, [])
   
   return (
     <>
-      <CardPost
-        post={post || template}
-        userConnectedIsAdmin={userConnectedIsAdmin}
-        setIdxModalToShow={setIdxModalToShow}
-        idxModalToShow={idxModalToShow}
-        indexCardPost={0}
-        onLike={(post: Posts) => setPost(post)}
-        onUnlike={(post: Posts) => setPost(post)}
-      />
-      
-      <div className={css.containerCreateComment}>
-        <div className={css.containerField}>
-          <Avvvatars value={cookies.get('username') ?? ""} style="shape"/>
-          <input className={css.contentComment} value={contentComment}
-                 onChange={(e) => setContentComment(e.target.value)}/>
-          <button onClick={handleNewComment} className={css.sendComment}>Send</button>
-        </div>
-      </div>
-      
-      {comments.map((comment) => (<div><CardComment comment={comment.comment}/></div>))}
+      {post !== undefined &&
+        <>
+          <CardPost
+            post={post}
+            userConnectedIsAdmin={userConnectedIsAdmin}
+            setIdxModalToShow={setIdxModalToShow}
+            idxModalToShow={idxModalToShow}
+            indexCardPost={0}
+            onLike={(post: Posts) => setPost(post)}
+            onUnlike={(post: Posts) => setPost(post)}
+          />
+          
+          <div className={css.containerCreateComment}>
+            <div className={css.containerField}>
+              <Avvvatars value={cookies.get('username') ?? ""} style="shape"/>
+              <input className={css.contentComment} value={contentComment}
+                     onChange={(e) => setContentComment(e.target.value)}/>
+              <button onClick={handleNewComment} className={css.sendComment}>Send</button>
+            </div>
+          </div>
+          {comments?.length ? comments?.map((comment: Comments, idx: number) => (
+            <CardComment key={idx} admin={comment.admin} comment={comment.comment}/>)) :
+            (<div className={css.containerField}><span>Ohh such empty</span></div>)}
+        </>}
     </>
-  );
-};
+  )
+}
 
 export default SinglePost;

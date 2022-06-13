@@ -3,10 +3,9 @@ import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
 import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEditorJWT } from "../../hooks/jwt.store";
 import cookies from "js-cookie";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SectionSearchCategory from "../../components/SectionSearchCategory/SectionSearchCategory";
 
 export type Posts = {
   user_id: string,
@@ -40,7 +39,7 @@ const Home: FC<HomeProps> = () => {
     const newLikeField = post.like += cookies.get('id') + ","
     setPosts((prevState) => prevState.filter((state) => state.post_id === post.post_id ? {
       ...state,
-      [state.like]:newLikeField
+      [ state.like ]:newLikeField
     } : state))
   }
   
@@ -72,17 +71,10 @@ const Home: FC<HomeProps> = () => {
   
   return (
     <>
-      <div className={css.containerSearch}>
-        <div className={css.search}>
-          <FontAwesomeIcon className={css.searchIcon} icon={faMagnifyingGlass} />
-          <input
-            className={css.inputSearchTAG}
-            value={contentSearch}
-            placeholder="Search a category"
-            onChange={(e) => setContentSearch(e.target.value)}/>
-        </div>
-      </div>
-      
+      <SectionSearchCategory
+        contentSearch={contentSearch}
+        setContentSearch={setContentSearch}
+      />
       <PostInput
         onPost={(newPost: Posts) => setPosts((posts: Posts[]) => [newPost, ...posts])}
       />
@@ -94,20 +86,20 @@ const Home: FC<HomeProps> = () => {
             else return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           })
           .slice(0, numberOfPost)
-          .map((post: Posts, idx: number) => {
-            return post.categories.includes(contentSearch) ?
-              <CardPost
-                indexCardPost={idx}
-                idxModalToShow={idxModalToShow}
-                setIdxModalToShow={setIdxModalToShow}
-                userConnectedIsAdmin={userConnectedIsAdmin}
-                post={post}
-                onDeletePost={(post: Posts) => removePost(post)}
-                onLike={(post: Posts) => likePost(post)}
-                onUnlike={(post: Posts) => unlikePost(post)}
-                key={idx}
-              /> : null
-          })}
+          .map((post: Posts, idx: number) => (
+            post.categories.includes(contentSearch) &&
+            <CardPost
+              indexCardPost={idx}
+              idxModalToShow={idxModalToShow}
+              setIdxModalToShow={setIdxModalToShow}
+              userConnectedIsAdmin={userConnectedIsAdmin}
+              post={post}
+              onDeletePost={(post: Posts) => removePost(post)}
+              onLike={(post: Posts) => likePost(post)}
+              onUnlike={(post: Posts) => unlikePost(post)}
+              key={idx}
+            />
+          ))}
       </div>
     </>
   );

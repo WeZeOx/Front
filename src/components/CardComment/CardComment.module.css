@@ -46,5 +46,32 @@ a {
   flex-direction: column;
   justify-content: flex-start;
 }
+.childComment .containerInfoUser {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.childComment .containerInfoUser .userInfo {
+  display: flex;
+  flex-direction: column;
+}
+.childComment .containerInfoUser .userInfo .usernameComment {
+  color: white;
+  font-size: 1.2rem;
+}
+.childComment .containerInfoUser .userInfo .isAdmin {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: #ffb4b4;
+}
+.childComment .content {
+  margin-top: 15px;
+  color: #cea2a2;
+  font-size: 1.2rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-bottom: 7px;
+}
 
 /*# sourceMappingURL=CardComment.module.css.map */
