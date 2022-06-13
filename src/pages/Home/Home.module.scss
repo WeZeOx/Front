@@ -1,3 +1,46 @@
+@import "../../globals";
+
+::placeholder {
+  font-size: 1.2rem;
+}
+
+.containerSearch {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 80px;
+  margin-top: 70px;
+
+  .search {
+    border-radius: 10px;
+    padding: 3px;
+    background-color: $backgroundNavbar;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .searchIcon {
+      color: #cea2a2;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 1.2rem;
+      margin: 8px 0 7px 30px;
+      height: 26px;
+    }
+
+    .inputSearchTAG {
+      color: #cea2a2;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin: 8px 12px 7px 15px;
+      height: 30px;
+      background: #202122;
+    }
+
+  }
+
+}
+
+
 .containerPost {
   display: flex;
   justify-content: center;

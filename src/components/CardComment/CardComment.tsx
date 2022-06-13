@@ -1,13 +1,20 @@
 import React, { FC } from 'react';
+import css from "./CardComment.module.scss"
 
 type MyProps = {
-  props: any[]
+  comment: {
+    user_id: string,
+    content_comment: string,
+    created_at: Date,
+    username: string
+  }
 }
 
-const CardComment:FC<MyProps> = ({props}) => {
+const CardComment: FC<MyProps> = ({ comment }) => {
   return (
-    <div>
-      {props?.map((item) => <div>{item?.comment?.username}</div>)}
+    <div className={css.childComment}>
+      {comment.content_comment}
+      {comment.username}
     </div>
   );
 };

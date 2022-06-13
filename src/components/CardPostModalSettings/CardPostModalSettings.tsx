@@ -23,7 +23,7 @@ const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToSh
             <div className={css.chooses}>
               <div className={css.choose} onClick={handleDeletePost}>
                 <FontAwesomeIcon className={css.icon} icon={faBan}/>
-                <span className={css.title}>Supprimer ce tweet</span>
+                <span className={css.title}>Delete this story</span>
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@ const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToSh
           <div className={css.chooses}>
             <div className={css.choose} onClick={handleDeletePost}>
               <FontAwesomeIcon className={css.icon} icon={faBan}/>
-              <span className={css.title}>Supprimer votre tweet</span>
+              <span className={css.title}>Delete your story</span>
             </div>
           </div>
         </div>

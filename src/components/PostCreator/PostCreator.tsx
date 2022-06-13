@@ -7,12 +7,12 @@ type ModalProps = {
 }
 
 const PostCreator: FC<ModalProps> = ({ addPost }) => {
-  const categoryTag = useRef() as React.MutableRefObject<HTMLInputElement>
+  const [categoryTag, setCategoryTag] = useState<string>("")
   const [postText, setPostText] = useState<string>("")
   
   const onSubmit = () => {
-    addPost(postText, categoryTag.current.value)
-    categoryTag.current.value = ""
+    addPost(postText, categoryTag)
+    setCategoryTag("")
     setPostText("")
   }
   
@@ -33,7 +33,8 @@ const PostCreator: FC<ModalProps> = ({ addPost }) => {
         <div className={css.tagContainer}>
           <input
             placeholder="Category : humor, anime"
-            ref={categoryTag}
+            value={categoryTag}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setCategoryTag(e.target.value)}
             className={css.inputTag}
           />
         </div>

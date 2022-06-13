@@ -3,8 +3,10 @@ import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
 import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEditorJWT } from "../../hooks/jwt.store";
 import cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type Posts = {
   user_id: string,
@@ -21,6 +23,8 @@ export type Posts = {
 type HomeProps = {}
 
 const Home: FC<HomeProps> = () => {
+  const [filter, setFilter] = useState<string>("")
+  const [contentSearch, setContentSearch] = useState<string>("")
   const [posts, setPosts] = useState<Posts[]>([])
   const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
   const [numberOfPost, setNumberOfPost] = useState<number>(12)
@@ -53,7 +57,7 @@ const Home: FC<HomeProps> = () => {
   
   useEffect(() => {
     axios.get<Posts[]>("http://localhost:3333/api/posts/all")
-      .then(({ data }) => setPosts(data.reverse()))
+      .then(({ data }) => setPosts(data))
       .catch((err) => console.log(err))
     window.addEventListener('scroll', addMore)
     return () => window.removeEventListener('scroll', addMore)
@@ -65,30 +69,47 @@ const Home: FC<HomeProps> = () => {
       .catch((err) => console.log(err))
   }, [jwtStore.token])
   
+  
   return (
     <>
+      <div className={css.containerSearch}>
+        <div className={css.search}>
+          <FontAwesomeIcon className={css.searchIcon} icon={faMagnifyingGlass} />
+          <input
+            className={css.inputSearchTAG}
+            value={contentSearch}
+            placeholder="Search a category"
+            onChange={(e) => setContentSearch(e.target.value)}/>
+        </div>
+      </div>
+      
       <PostInput
         onPost={(newPost: Posts) => setPosts((posts: Posts[]) => [newPost, ...posts])}
       />
       <div className={css.containerPost}>
         {posts
+          .sort((a, b) => {
+            if (filter === "MOST_LIKE") return b.like.split(',').length - a.like.split(',').length
+            else if (filter === "OLD_POST") return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+            else return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          })
           .slice(0, numberOfPost)
-          .map((post: Posts, idx: number) => (
-            <CardPost
-              indexCardPost={idx}
-              idxModalToShow={idxModalToShow}
-              setIdxModalToShow={setIdxModalToShow}
-              userConnectedIsAdmin={userConnectedIsAdmin}
-              post={post}
-              onDeletePost={(post: Posts) => removePost(post)}
-              onLike={(post: Posts) => likePost(post)}
-              onUnlike={(post: Posts) => unlikePost(post)}
-              key={idx}
-            />
-          ))}
+          .map((post: Posts, idx: number) => {
+            return post.categories.includes(contentSearch) ?
+              <CardPost
+                indexCardPost={idx}
+                idxModalToShow={idxModalToShow}
+                setIdxModalToShow={setIdxModalToShow}
+                userConnectedIsAdmin={userConnectedIsAdmin}
+                post={post}
+                onDeletePost={(post: Posts) => removePost(post)}
+                onLike={(post: Posts) => likePost(post)}
+                onUnlike={(post: Posts) => unlikePost(post)}
+                key={idx}
+              /> : null
+          })}
       </div>
     </>
   );
 };
-
 export default Home;

@@ -107,7 +107,7 @@ const CardPost: FC<CardPostProps> = ({
             ?.map((categorie: string, idx: number) => (
               categorie.length > 0 ? <span key={idx} className={css.category}>{categorie}</span> : null
             ))
-          : ""
+          : null
         }
         
         <div className={css.containerLikeAndComment}>
@@ -116,7 +116,6 @@ const CardPost: FC<CardPostProps> = ({
               <AiFillHeart onClick={handleUnlikePost}/> :
               <AiOutlineHeart onClick={handleLikePost}/>
             }</span>
-            
             <span className={css.numberOfLike}>{post?.like.split(',').length - 1 ?? 0}</span>
           </div>
           

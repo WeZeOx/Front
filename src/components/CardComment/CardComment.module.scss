@@ -1,0 +1,17 @@
+@import "../../globals";
+
+.childComment {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+  display: flex;
+  background: $backgroundNavbar;
+  word-break: break-all;
+  padding: 10px;
+  width: 42%;
+  margin: 0 auto;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}

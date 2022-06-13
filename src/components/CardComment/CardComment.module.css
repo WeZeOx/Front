@@ -1,0 +1,50 @@
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.childComment {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+  display: flex;
+  background: #202122;
+  word-break: break-all;
+  padding: 10px;
+  width: 42%;
+  margin: 0 auto;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/*# sourceMappingURL=CardComment.module.css.map */
