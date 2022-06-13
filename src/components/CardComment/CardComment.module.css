@@ -73,5 +73,20 @@ a {
   font-family: "Plus Jakarta Sans", sans-serif;
   margin-bottom: 7px;
 }
+.childComment .containerLike {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  width: 100%;
+  font-size: 1.2rem;
+  color: #cea2a2;
+  text-align: center;
+  white-space: nowrap;
+  margin-bottom: 7px;
+}
+.childComment .containerLike > * {
+  cursor: pointer;
+}
 
 /*# sourceMappingURL=CardComment.module.css.map */

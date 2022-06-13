@@ -47,4 +47,22 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     margin-bottom: 7px;
   }
+
+
+  .containerLike {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    width: 100%;
+    font-size: 1.2rem;
+    color: $colorContentPost;
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: 7px;
+
+    & > * {
+      cursor: pointer;
+    }
+  }
 }

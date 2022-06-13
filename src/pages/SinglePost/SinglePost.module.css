@@ -74,4 +74,28 @@ a {
   font-weight: 400;
 }
 
+.containerEmpty {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-left: 2px solid gray;
+  border-right: 2px solid gray;
+  display: flex;
+  background: #202122;
+  word-break: break-all;
+  padding: 10px;
+  width: 42%;
+  margin: 0 auto;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.containerEmpty .titleEmpty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #cea2a2;
+}
+
 /*# sourceMappingURL=SinglePost.module.css.map */

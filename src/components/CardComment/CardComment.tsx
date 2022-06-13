@@ -5,23 +5,36 @@ import cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
 import { AiOutlineHeart } from "react-icons/ai";
+import axios from "axios";
 
-type MyProps = {
+type CardCommentProps = {
   admin: boolean,
+  onCommentLike: (comment: any) => void
+  onCommentunLike: (comment: any) => void
   comment: {
     user_id: string,
     content_comment: string,
     created_at: Date,
     username: string,
-    like: string
+    like: string,
+    comment_id: string
   }
 }
 
-const CardComment: FC<MyProps> = ({ comment, admin }) => {
+const CardComment: FC<CardCommentProps> = ({ comment, admin, onCommentLike, onCommentunLike }) => {
   
-  const handleLikePost = () => {
+  const handleLikeComment = () => {
+    axios.patch(`http://localhost:3333/api/comments/like/${comment.comment_id}`)
+      .then(({ data }) => data)
+      .catch((err) => console.log(err))
+    onCommentLike(comment)
   }
-  const handleunLikePost = () => {
+  
+  const handleunLikeComment = () => {
+    axios.patch(`http://localhost:3333/api/comments/unlike/${comment.comment_id}`)
+      .then(({ data }) => data)
+      .catch((err) => console.log(err))
+    onCommentunLike(comment)
   }
   
   return (
@@ -34,12 +47,12 @@ const CardComment: FC<MyProps> = ({ comment, admin }) => {
         </div>
       </div>
       <span className={css.content}>{comment.content_comment}</span>
+      
       <div className={css.containerLike}>
         {comment?.like?.split(',')?.includes(cookies.get('id') ?? "") ?
-          <FontAwesomeIcon icon={faHeart} onClick={handleLikePost}/> :
-          <AiOutlineHeart onClick={handleunLikePost}/>
-        }
-        <span>0</span>
+          <FontAwesomeIcon icon={faHeart} onClick={handleunLikeComment}/> :
+          <AiOutlineHeart onClick={handleLikeComment}/>}
+        <span className={css.numberOfLike}>{comment?.like?.split(',').length - 1}</span>
       </div>
     </div>
   );
