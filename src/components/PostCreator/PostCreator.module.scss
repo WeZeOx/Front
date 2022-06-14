@@ -30,6 +30,7 @@
     display: grid;
 
     .inputUser {
+      z-index: 1000;
       margin-top: 10px;
       font-size: 1.2rem;
       outline: none;

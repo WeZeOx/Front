@@ -1,3 +1,93 @@
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+svg {
+  height: 100%;
+}
+
+.containerShow {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 80px;
+  margin-top: 60px;
+  position: sticky;
+  top: 150px;
+}
+.containerShow .back {
+  display: flex;
+  position: fixed;
+  margin-top: 20px;
+  top: 200px;
+  margin-right: 80px;
+  border-radius: 10px;
+  background-color: #202122;
+  font-size: 1.5rem;
+  padding: 7px;
+}
+.containerShow .back .titleFilter {
+  transition: transform 250ms;
+  pointer-events: none;
+  color: #cea2a2;
+}
+.containerShow .back .containerFilterModal {
+  position: absolute;
+  bottom: -175px;
+  border-radius: 10px;
+  width: max-content;
+  padding: 7px;
+  left: 0;
+  background: #202122;
+}
+.containerShow .back .containerFilterModal .choose {
+  display: flex;
+  padding: 5px;
+}
+.containerShow .back .containerFilterModal .choose > * {
+  border: 2px solid #4a4242;
+  border-radius: 20px;
+  padding: 6px;
+  padding-inline: 12px;
+  color: #cea2a2;
+}
 
 /*# sourceMappingURL=FilterPost.module.css.map */

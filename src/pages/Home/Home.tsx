@@ -3,7 +3,6 @@ import axios from "axios";
 import PostInput from "../../components/PostInput/PostInput";
 import CardPost from "../../components/CardPost/CardPost";
 import css from './Home.module.scss'
-import { useEditorJWT } from "../../hooks/jwt.store";
 import cookies from "js-cookie";
 import SectionSearchCategory from "../../components/SectionSearchCategory/SectionSearchCategory";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
@@ -18,7 +17,7 @@ export type Posts = {
   post_id: string,
   categories: string,
   admin: boolean,
-  number_of_post: number
+  number_of_comment: number
 }
 
 type HomeProps = {}
@@ -40,7 +39,7 @@ const Home: FC<HomeProps> = () => {
     const newLikeField = post.like += cookies.get('id') + ","
     setPosts((prevState) => prevState.filter((state) => state.post_id === post.post_id ? {
       ...state,
-      [ state.like ]:newLikeField
+      [state.like]: newLikeField
     } : state))
   }
   
@@ -65,13 +64,16 @@ const Home: FC<HomeProps> = () => {
   
   return (
     <>
-      <FilterPost />
       <SectionSearchCategory
         contentSearch={contentSearch}
         setContentSearch={setContentSearch}
       />
+      <FilterPost
+        setFilter={setFilter}
+      />
       <PostInput
-        onPost={(newPost: Posts) => setPosts((posts: Posts[]) => [newPost, ...posts])}
+        onPost={(newPost: Posts) => setPosts((prevState) => prevState?.length > 0 ? [...prevState, newPost] : [newPost])
+        }
       />
       <div className={css.containerPost}>
         {posts

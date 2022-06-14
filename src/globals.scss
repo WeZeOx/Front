@@ -5,6 +5,14 @@ $colorAdmin: #ffb4b4;
 $colorContentPost: #cea2a2;
 $colorBackForm: #202122;
 
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 input {
   -webkit-appearance: none;
   outline: none;

@@ -1,3 +1,11 @@
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 input {
   -webkit-appearance: none;
   outline: none;
@@ -61,6 +69,17 @@ a {
   font-size: 1.2rem;
 }
 .childComment .containerInfoUser .userInfo .isAdmin {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: #ffb4b4;
+}
+.childComment .containerInfoUser .containerModal {
+  position: relative;
+  margin-left: auto;
+}
+.childComment .containerInfoUser .containerModal .iconAdmin {
+  cursor: pointer;
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: bold;
   letter-spacing: 0.1em;

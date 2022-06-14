@@ -1,16 +1,19 @@
-import React, { FC, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, FC, SetStateAction } from 'react';
+import css from "./CardCommentModalSettings.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan, faClose } from "@fortawesome/free-solid-svg-icons";
-import css from "./CardPostModalSettings.module.scss";
 
-
-type CardPostModalSettingsProps = {
+type CardCommentModalSettingsProps = {
   wantToShow: string,
-  handleDeletePost: () => void,
-  setIdxModalToShow: Dispatch<SetStateAction<number | null>>
+  handleDeleteComment: () => void,
+  setIdxModalToShow: Dispatch<SetStateAction<number | null>>,
 }
 
-const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToShow, handleDeletePost, wantToShow }) => {
+const CardCommentModalSettings:FC<CardCommentModalSettingsProps> = ({
+  wantToShow,
+  handleDeleteComment,
+  setIdxModalToShow
+}) => {
   switch (wantToShow) {
     case "ADMIN_PANEL":
       return (
@@ -18,9 +21,9 @@ const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToSh
           <div className={css.containerCross}>
             <FontAwesomeIcon onClick={() => setIdxModalToShow(null)} className={css.closeIcon} icon={faClose}/>
             <div className={css.chooses}>
-              <div className={css.choose} onClick={handleDeletePost}>
+              <div className={css.choose} onClick={handleDeleteComment}>
                 <FontAwesomeIcon className={css.icon} icon={faBan}/>
-                <span className={css.title}>Delete this story</span>
+                <span className={css.title}>Delete this comment</span>
               </div>
             </div>
           </div>
@@ -32,9 +35,9 @@ const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToSh
           <div className={css.containerCross}>
             <FontAwesomeIcon onClick={() => setIdxModalToShow(null)} className={css.closeIcon} icon={faClose}/>
             <div className={css.chooses}>
-              <div className={css.choose} onClick={handleDeletePost}>
+              <div className={css.choose} onClick={handleDeleteComment}>
                 <FontAwesomeIcon className={css.icon} icon={faBan}/>
-                <span className={css.title}>Delete your story</span>
+                <span className={css.title}>Delete your comment</span>
               </div>
             </div>
           </div>
@@ -55,4 +58,4 @@ const CardPostModalSettings: FC<CardPostModalSettingsProps> = ({ setIdxModalToSh
   }
 };
 
-export default CardPostModalSettings;
+export default CardCommentModalSettings;

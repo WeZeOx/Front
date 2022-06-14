@@ -36,7 +36,7 @@ const Categories: FC<DisplayCategoriesProps> = ({ post, onPostLike, onPostUnlike
         </div>
         <Link className={css.comment} to={`/post/${post?.post_id}`}>
           <span className={css.iconComment}><FaRegComment/></span>
-          <span className={css.numberOfComment}>{post?.number_of_post}</span>
+          <span className={css.numberOfComment}>{post?.number_of_comment}</span>
         </Link>
       </div>
     </div>

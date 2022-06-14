@@ -38,6 +38,18 @@
         color: $colorAdmin;
       }
     }
+    .containerModal {
+      position: relative;
+      margin-left: auto;
+
+      .iconAdmin {
+        cursor: pointer;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: bold;
+        letter-spacing: 0.1em;
+        color: $colorAdmin;
+      }
+    }
   }
 
   .content {

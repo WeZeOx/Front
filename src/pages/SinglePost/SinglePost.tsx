@@ -24,6 +24,8 @@ export type Comments = {
 }
 
 const SinglePost: FC<MyProps> = () => {
+  const [idxModalToShowComment, setIdxModalToShowComment] = useState<number | null>(null)
+  
   const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
   const [post, setPost] = useState<Posts>()
   const [comments, setComments] = useState<Comments[]>([])
@@ -35,7 +37,7 @@ const SinglePost: FC<MyProps> = () => {
     const newLikeField = comment.like += cookies.get('id') + ","
     setComments((prevState) => prevState.filter((state: Comments) => state.comment.comment_id === comment.comment_id ? {
       ...state,
-      [ state.comment.comment_id ]:newLikeField
+      [state.comment.like]: newLikeField
     } : state))
   }
   
@@ -44,22 +46,15 @@ const SinglePost: FC<MyProps> = () => {
     setComments((prevState) => [...prevState])
   }
   
+  const onDeleteComment = (commentId: string) => {
+    setComments((comments) => comments.filter((comment) => comment.comment.comment_id !== commentId))
+  }
+  
   const handleNewComment = () => {
-    axios.post('http://localhost:3333/api/comments/createcomment', {
-      "post_id":postId,
-      "content_comment":contentComment
-    }).then(({ data }) => {
-      const newComment: Comments = {
-        admin:data.isAdmin,
-        comment:{
-          content_comment:data.comment.content_comment,
-          username:data.username,
-          user_id:data.comment.user_id,
-          created_at:data.comment.created_at_comment,
-          like:"",
-          comment_id:data.comment.comment_id
-        }
-      }
+    axios.post<Comments>('http://localhost:3333/api/comments/createcomment', {
+      "post_id": postId,
+      "content_comment": contentComment
+    }).then(({ data: newComment }) => {
       setComments((prevState) => prevState?.length > 0 ? [...prevState, newComment] : [newComment])
     }).catch((err) => console.log(err))
     setContentComment("")
@@ -99,14 +94,18 @@ const SinglePost: FC<MyProps> = () => {
             </div>
           </div>
           {comments?.length ? comments?.map((comment: Comments, idx: number) => (
-              <CardComment
-                key={idx}
-                admin={comment.admin ?? false}
-                comment={comment.comment}
-                onCommentLike={(comment: Comment) => onLikeComment(comment)}
-                onCommentunLike={(comment: Comment) => onCommentunLike(comment)}
-              />
-            )) : <div className={css.containerEmpty}><span className={css.titleEmpty}>Ohh such empty</span></div>}
+            <CardComment
+              onDeleteComment={(commentId: string) => onDeleteComment(commentId)}
+              idxModalToShow={idxModalToShowComment}
+              setIdxModalToShow={setIdxModalToShowComment}
+              indexCardComment={idx}
+              key={idx}
+              admin={comment.admin ?? false}
+              comment={comment.comment}
+              onCommentLike={(comment: Comment) => onLikeComment(comment)}
+              onCommentunLike={(comment: Comment) => onCommentunLike(comment)}
+            />
+          )) : <div className={css.containerEmpty}><span className={css.titleEmpty}>Ohh such empty</span></div>}
         </>}
     </>
   )

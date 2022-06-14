@@ -1,4 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300&family=Roboto:wght@100&family=Ubuntu:wght@300&display=swap");
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 input {
   -webkit-appearance: none;
   outline: none;
@@ -59,6 +67,7 @@ a {
   display: grid;
 }
 .containerModal .middle .inputUser {
+  z-index: 1000;
   margin-top: 10px;
   font-size: 1.2rem;
   outline: none;

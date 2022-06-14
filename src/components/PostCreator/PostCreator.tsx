@@ -39,7 +39,7 @@ const PostCreator: FC<ModalProps> = ({ addPost }) => {
           />
         </div>
         <button
-          style={{ cursor:postText.length > 0 ? "pointer" : "not-allowed" }}
+          style={{ cursor:postText.length > 0 ? "pointer" : "not-allowed", zIndex: 100 }}
           className={css.button}
           onClick={onSubmit}
         >

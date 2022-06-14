@@ -58,14 +58,13 @@ const CardPost: FC<CardPostProps> = ({
   
   return (
     <div className={css.containerChildPost}
-         style={{ marginTop:window.location.href.split('/').includes('post') ? 40 : 0 }}>
+         style={{ marginTop: window.location.href.split('/').includes('post') ? 40 : 0 }}>
       <div className={css.whoami}>
         <Avvvatars style="shape" value={post?.username ?? ""}/>
         <div className={css.contentUser}>
           <span className={css.username}>{post?.username ?? ""}</span>
           {post?.admin && (<span className={css.isAdmin}>Administrator</span>)}
         </div>
-        
         <div className={css.containerModal}>
           <FontAwesomeIcon
             onClick={() => indexCardPost === idxModalToShow && setIdxModalToShow ? setIdxModalToShow(null) : setIdxModalToShow(indexCardPost ?? 0)}
@@ -74,16 +73,18 @@ const CardPost: FC<CardPostProps> = ({
           />
           
           {idxModalToShow === indexCardPost && userConnectedIsAdmin &&
-            <CardPostModalSettings wantToShow="ADMIN_PANEL" handleDeletePost={handleDeletePost} setIdxModalToShow={setIdxModalToShow}/>}
+            <CardPostModalSettings wantToShow="ADMIN_PANEL" handleDeletePost={handleDeletePost}
+                                   setIdxModalToShow={setIdxModalToShow}/>}
           
           {idxModalToShow === indexCardPost && !userConnectedIsAdmin && post.user_id === cookies.get('id') &&
-            <CardPostModalSettings wantToShow="USER_PANEL" handleDeletePost={handleDeletePost} setIdxModalToShow={setIdxModalToShow}/>}
+            <CardPostModalSettings wantToShow="USER_PANEL" handleDeletePost={handleDeletePost}
+                                   setIdxModalToShow={setIdxModalToShow}/>}
           
           {idxModalToShow === indexCardPost && !userConnectedIsAdmin && !(post.user_id === cookies.get('id')) &&
-            <CardPostModalSettings wantToShow="NOT_AUTHORIZED" handleDeletePost={handleDeletePost} setIdxModalToShow={setIdxModalToShow}/>}
+            <CardPostModalSettings wantToShow="NOT_AUTHORIZED" handleDeletePost={handleDeletePost}
+                                   setIdxModalToShow={setIdxModalToShow}/>}
         </div>
       </div>
-      
       <span className={css.contentPost}>{post?.content}</span>
       <div className={css.containerCategory}>
         <Categories
