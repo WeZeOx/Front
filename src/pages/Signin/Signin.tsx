@@ -1,43 +1,38 @@
-import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, FormEvent, useEffect, useRef, useState, MutableRefObject } from 'react';
 import css from "./Sign.module.scss";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
 import { useEditorJWT } from "../../hooks/jwt.store";
 
-type stateResponse = {
-  message: string,
-  auth: boolean,
-  token: string
+type LoginResponse = {
+  state: {
+    message: string,
+    auth: boolean,
+    token: string
+  },
+  user: {
+    id: string,
+    created_at: Date,
+    username: string
+  },
 }
 
-type userResponse = {
-  id: string,
-  created_at: Date,
-  username: string
-}
+type SigninProps = {}
 
-type loginResponse = {
-  state: stateResponse
-  user: userResponse
-
-}
-
-type MyProps = {}
-
-const Signin: FC<MyProps> = () => {
+const Signin: FC<SigninProps> = () => {
   const navigate = useNavigate();
   const jwtStore = useEditorJWT()
   
   const [errorMessage, setErrorMessage] = useState("")
-  const email = useRef() as React.MutableRefObject<HTMLInputElement>;
-  const password = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const email = useRef() as MutableRefObject<HTMLInputElement>;
+  const password = useRef() as MutableRefObject<HTMLInputElement>;
   
   useEffect(() => {
     if (jwtStore.token !== '') return navigate('/home')
   }, []);
   
-  const handleSuccessfulLogin = (response: loginResponse) => {
+  const handleSuccessfulLogin = (response: LoginResponse) => {
     if (!response.state.auth || response.state.message !== "Authorized") return
     cookies.set("username", response.user.username, { expires: 3 })
     cookies.set("id", response.user.id, { expires: 3 })
@@ -48,7 +43,7 @@ const Signin: FC<MyProps> = () => {
   
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    axios.post("http://localhost:3333/api/users/signin/", {
+    axios.post<LoginResponse>("http://localhost:3333/api/users/signin/", {
       "email": email.current.value,
       "password": password.current.value
     }).then(({ data }) => handleSuccessfulLogin(data))

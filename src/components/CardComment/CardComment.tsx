@@ -7,10 +7,19 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons/faHeart";
 import { AiOutlineHeart } from "react-icons/ai";
 import axios from "axios";
 
+export type Comment = {
+  user_id: string;
+  content_comment: string;
+  created_at: Date;
+  username: string;
+  like: string;
+  comment_id: string
+}
+
 type CardCommentProps = {
   admin: boolean,
-  onCommentLike: (comment: any) => void
-  onCommentunLike: (comment: any) => void
+  onCommentLike: (comment: Comment) => void
+  onCommentunLike: (comment: Comment) => void
   comment: {
     user_id: string,
     content_comment: string,
@@ -27,6 +36,7 @@ const CardComment: FC<CardCommentProps> = ({ comment, admin, onCommentLike, onCo
     axios.patch(`http://localhost:3333/api/comments/like/${comment.comment_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
+    
     onCommentLike(comment)
   }
   

@@ -8,12 +8,15 @@ import { useLayoutEffect } from "react";
 import { axiosInterceptor } from "./utils/axiosInstance";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import Navbar from "./components/Navbar/Navbar";
+import { useEditorAdmin } from "./hooks/isadmin.store";
 
 function App(){
   const jwtStore = useEditorJWT()
+  const adminStore = useEditorAdmin()
   
   useLayoutEffect(() => {
     axiosInterceptor(jwtStore.token)
+    adminStore.setIsAdmin()
   }, [jwtStore.token])
   
   return (

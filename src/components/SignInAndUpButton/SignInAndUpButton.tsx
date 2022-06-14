@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { Link } from "react-router-dom";
 import css from "./SignInAndUpButton.module.scss"
 
-type MyProps = {}
+type SignInAndUpButtonProps = {}
 
-const SignInAndUpButton: FC<MyProps> = () => {
+const SignInAndUpButton: FC<SignInAndUpButtonProps> = () => {
   
   return (
     <div className={css.containerButton}>

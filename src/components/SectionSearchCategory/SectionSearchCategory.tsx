@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
+import React, { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import css from "./SectionSearchCategory.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +17,7 @@ const SectionSearchCategory: FC<SectionSearchCategoryProps> = ({ setContentSearc
           className={css.inputSearchTAG}
           value={contentSearch}
           placeholder="Search a category"
-          onChange={(e) => setContentSearch(e.target.value)}/>
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setContentSearch(e.target.value)}/>
       </div>
     </div>
   );

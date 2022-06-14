@@ -6,6 +6,8 @@ import css from './Home.module.scss'
 import { useEditorJWT } from "../../hooks/jwt.store";
 import cookies from "js-cookie";
 import SectionSearchCategory from "../../components/SectionSearchCategory/SectionSearchCategory";
+import { useEditorAdmin } from "../../hooks/isadmin.store";
+import FilterPost from "../../components/FilterPost/FilterPost";
 
 export type Posts = {
   user_id: string,
@@ -25,10 +27,9 @@ const Home: FC<HomeProps> = () => {
   const [filter, setFilter] = useState<string>("")
   const [contentSearch, setContentSearch] = useState<string>("")
   const [posts, setPosts] = useState<Posts[]>([])
-  const [userConnectedIsAdmin, setUserConnectedIsAdmin] = useState<boolean>(false)
   const [numberOfPost, setNumberOfPost] = useState<number>(12)
   const [idxModalToShow, setIdxModalToShow] = useState<number | null>(null)
-  const jwtStore = useEditorJWT()
+  const adminStore = useEditorAdmin()
   
   const unlikePost = (post: Posts) => {
     post.like = post.like.split(',').filter((reserch) => reserch !== cookies.get('id')).join(',')
@@ -48,7 +49,7 @@ const Home: FC<HomeProps> = () => {
     setPosts((prevState: Posts[]) => prevState.filter((state: Posts, idx: number) => idx !== indexPost))
   }
   
-  const addMore = () => {
+  const addMorePost = () => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 > (document?.scrollingElement?.scrollHeight ?? 0)) {
       setNumberOfPost((prevNumberOfPost) => prevNumberOfPost + 10)
     }
@@ -58,19 +59,13 @@ const Home: FC<HomeProps> = () => {
     axios.get<Posts[]>("http://localhost:3333/api/posts/all")
       .then(({ data }) => setPosts(data))
       .catch((err) => console.log(err))
-    window.addEventListener('scroll', addMore)
-    return () => window.removeEventListener('scroll', addMore)
+    window.addEventListener('scroll', addMorePost)
+    return () => window.removeEventListener('scroll', addMorePost)
   }, [])
-  
-  useEffect(() => {
-    axios.get(`http://localhost:3333/api/users/isadmin/`)
-      .then(({ data }) => setUserConnectedIsAdmin(data.isAdmin))
-      .catch((err) => console.log(err))
-  }, [jwtStore.token])
-  
   
   return (
     <>
+      <FilterPost />
       <SectionSearchCategory
         contentSearch={contentSearch}
         setContentSearch={setContentSearch}
@@ -80,7 +75,7 @@ const Home: FC<HomeProps> = () => {
       />
       <div className={css.containerPost}>
         {posts
-          .sort((a, b) => {
+          .sort((a: Posts, b: Posts) => {
             if (filter === "MOST_LIKE") return b.like.split(',').length - a.like.split(',').length
             else if (filter === "OLD_POST") return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
             else return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -92,7 +87,7 @@ const Home: FC<HomeProps> = () => {
               indexCardPost={idx}
               idxModalToShow={idxModalToShow}
               setIdxModalToShow={setIdxModalToShow}
-              userConnectedIsAdmin={userConnectedIsAdmin}
+              userConnectedIsAdmin={adminStore.isAdmin}
               post={post}
               onDeletePost={(post: Posts) => removePost(post)}
               onLike={(post: Posts) => likePost(post)}

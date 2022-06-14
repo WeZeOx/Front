@@ -1,0 +1,72 @@
+input {
+  -webkit-appearance: none;
+  outline: none;
+  box-shadow: none !important;
+}
+
+input[type=submit] {
+  cursor: pointer;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background: #4a4242;
+}
+
+body {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.category {
+  color: #cea2a2;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 25px;
+  padding: 5px;
+  padding-inline: 10px;
+  background-color: #4a4242;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  margin-bottom: 7px;
+}
+
+.containerLikeAndComment {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.containerLikeAndComment .container {
+  margin-left: auto;
+  display: flex;
+  column-gap: 12px;
+}
+.containerLikeAndComment .container .like {
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+}
+.containerLikeAndComment .container .comment {
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+}
+.containerLikeAndComment .container > * {
+  font-size: 1.2rem;
+  color: #cea2a2;
+}
+
+/*# sourceMappingURL=Categories.module.css.map */

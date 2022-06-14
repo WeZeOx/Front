@@ -1,0 +1,44 @@
+@import "../../globals";
+
+.category {
+  color: $colorContentPost;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 25px;
+  padding: 5px;
+  padding-inline: 10px;
+  background-color: $backgroundGeneral;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin-bottom: 7px;
+}
+
+.containerLikeAndComment {
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .container {
+    margin-left: auto;
+    display: flex;
+    column-gap: 12px;
+
+    .like {
+      cursor: pointer;
+      display: flex;
+      gap: 5px;
+    }
+
+    .comment {
+      cursor: pointer;
+      display: flex;
+      gap: 5px;
+    }
+
+    & > * {
+      font-size: 1.2rem;
+      color: $colorContentPost;
+    }
+  }
+}

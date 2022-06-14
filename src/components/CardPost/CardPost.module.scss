@@ -51,8 +51,6 @@
         color: $colorAdmin;
       }
     }
-
-
   }
 
   .contentPost {
@@ -64,49 +62,13 @@
   }
 
   .containerCategory {
+    margin-left: auto;
+
     margin-top: 15px;
     display: flex;
     padding-inline: 4px;
     flex-wrap: wrap;
     column-gap: 15px;
     width: 100%;
-
-    .category {
-      color: $colorContentPost;
-      font-size: 1rem;
-      text-align: center;
-      white-space: nowrap;
-      border-radius: 25px;
-      padding: 5px;
-      padding-inline: 10px;
-      background-color: $backgroundGeneral;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      margin-bottom: 7px;
-    }
-
-    .containerLikeAndComment {
-      margin-left: auto;
-      column-gap: 12px;
-      display: flex;
-      align-items: center;
-
-      .like {
-        cursor: pointer;
-        display: flex;
-        gap: 5px;
-      }
-
-      .comment {
-        cursor: pointer;
-        display: flex;
-        gap: 5px;
-      }
-
-      & > * {
-        font-size: 1.2rem;
-        color: $colorContentPost;
-      }
-
-    }
   }
 }

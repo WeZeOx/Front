@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookie";
 import { useEditorJWT } from "../../hooks/jwt.store";
+import { Simulate } from "react-dom/test-utils";
+import canPlay = Simulate.canPlay;
 
 type stateResponse = {
   message: string,
@@ -40,11 +42,11 @@ const Signup: FC<MyProps> = () => {
   }, []);
   
   const handleSuccessfulRegister = (response: registerResponse) => {
-      if (!response.state.auth || response.state.message !== "Authorized") return
-    cookies.set("jwt-token", response.state.token, { expires: 3 })
-    cookies.set("username", response.user.username, { expires: 3 })
-    cookies.set("id", response.user.id, { expires: 3 })
-    cookies.set("created-at", response.user.created_at.toString(), { expires: 3 })
+    if (!response.state.auth || response.state.message !== "Authorized") return
+    cookies.set("jwt-token", response.state.token, { expires:3 })
+    cookies.set("username", response.user.username, { expires:3 })
+    cookies.set("id", response.user.id, { expires:3 })
+    cookies.set("created-at", response.user.created_at.toString(), { expires:3 })
     useEditor.setJwtToken(response.state.token ?? "")
     navigate("/home")
   }
@@ -52,10 +54,10 @@ const Signup: FC<MyProps> = () => {
   const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     axios.post("http://localhost:3333/api/users/signup/", {
-      "username": username.current.value,
-      "password": password.current.value,
-      "verify_password": verifyPassword.current.value,
-      "email": email.current.value
+      "username":username.current.value,
+      "password":password.current.value,
+      "verify_password":verifyPassword.current.value,
+      "email":email.current.value
     }).then(({ data }) => handleSuccessfulRegister(data))
       .catch((err) => setErrorMessage(err.response.data.message))
   }

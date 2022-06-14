@@ -37,11 +37,11 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
   
   return (
     <div className={css.containerPost}>
-      {jwtStore.token ?
+      {jwtStore.token ? (
         <div className={css.containerSendPost}>
           <PostCreator addPost={(contentPost: string, categoryTag: string) => handleSendPost(contentPost, categoryTag)}/>
         </div>
-        : (
+       ) : (
           <div className={css.containerNotConnected}>You need to be connected to send a story</div>
         )}
     </div>

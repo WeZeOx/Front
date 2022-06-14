@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import css from './PostCreator.module.scss'
 import TextareaAutosize from 'react-textarea-autosize';
 
