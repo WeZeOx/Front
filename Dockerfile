@@ -8,4 +8,6 @@ RUN apk add npm
 RUN npm i
 RUN npm run build
 
-RUN CP -r dist/. /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+RUN cp -r dist/. /usr/share/nginx/html
