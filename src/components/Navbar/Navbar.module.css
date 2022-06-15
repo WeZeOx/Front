@@ -43,7 +43,6 @@ a {
 .containerNavbar {
   margin: 0;
   height: 75px;
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-content: center;
