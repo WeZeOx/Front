@@ -61,4 +61,15 @@ a {
   font-weight: 400;
 }
 
+@media only screen and (max-width: 765px) {
+  .containerList {
+    margin-right: 10px !important;
+    gap: 0.5rem !important;
+  }
+
+  .link {
+    font-size: 0.95rem !important;
+  }
+}
+
 /*# sourceMappingURL=SignInAndUpButton.module.css.map */

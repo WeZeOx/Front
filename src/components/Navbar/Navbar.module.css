@@ -43,6 +43,7 @@ a {
 .containerNavbar {
   margin: 0;
   height: 75px;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -77,6 +78,17 @@ a {
   margin-left: 11px;
   height: 100%;
   font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 765px) {
+  .slogan {
+    font-size: calc(3vmin + 3px) !important;
+    margin-left: 5px !important;
+  }
+  .slogan span:last-child {
+    font-size: 3vmin !important;
+    margin-left: 3px !important;
+  }
 }
 
 /*# sourceMappingURL=Navbar.module.css.map */

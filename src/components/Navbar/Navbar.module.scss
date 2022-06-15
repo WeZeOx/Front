@@ -4,6 +4,7 @@
 .containerNavbar {
   margin: 0;
   height: $navbarSize;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -40,6 +41,18 @@
       margin-left: 11px;
       height: 100%;
       font-size: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .slogan {
+    font-size: calc(3vmin + 3px) !important;
+    margin-left: 5px !important;
+
+    span:last-child {
+      font-size: calc(3vmin) !important;
+      margin-left: 3px !important;
     }
   }
 }

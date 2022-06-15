@@ -40,7 +40,6 @@ a {
 }
 
 .containerPost {
-  margin-top: -50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,6 +68,8 @@ a {
   border-left: 2px solid gray;
   border-right: 2px solid gray;
   width: 42%;
+  text-align: center;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=PostInput.module.css.map */
