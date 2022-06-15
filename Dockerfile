@@ -1,9 +1,11 @@
-FROM node
+FROM nginx:1.22.0-alpine
 
-WORKDIR /app/front
+WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN apk add npm
+RUN npm i
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+RUN CP -r dist/. /usr/share/nginx/html
