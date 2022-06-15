@@ -8,6 +8,7 @@ import CardComment, { Comment } from "../../components/CardComment/CardComment";
 import Avvvatars from "avvvatars-react";
 import cookies from "js-cookie";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
+import { baseUrl } from "../../environment/env";
 
 type MyProps = {}
 
@@ -51,7 +52,7 @@ const SinglePost: FC<MyProps> = () => {
   }
   
   const handleNewComment = () => {
-    axios.post<Comments>('http://localhost:3333/api/comments/createcomment', {
+    axios.post<Comments>(`${baseUrl}/comments/createcomment`, {
       "post_id": postId,
       "content_comment": contentComment
     }).then(({ data: newComment }) => {
@@ -61,7 +62,7 @@ const SinglePost: FC<MyProps> = () => {
   }
   
   useEffect(() => {
-    axios.get(`http://localhost:3333/api/comments/getpost/${postId}`)
+    axios.get(`${baseUrl}/comments/getpost/${postId}`)
       .then(({ data }) => {
         setComments(data.Comments)
         setPost(data.Post)

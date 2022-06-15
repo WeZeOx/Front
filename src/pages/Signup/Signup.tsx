@@ -6,6 +6,7 @@ import cookies from "js-cookie";
 import { useEditorJWT } from "../../hooks/jwt.store";
 import { Simulate } from "react-dom/test-utils";
 import canPlay = Simulate.canPlay;
+import { baseUrl } from "../../environment/env";
 
 type stateResponse = {
   message: string,
@@ -53,7 +54,7 @@ const Signup: FC<MyProps> = () => {
   
   const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    axios.post("http://localhost:3333/api/users/signup/", {
+    axios.post(`${baseUrl}/users/signup/`, {
       "username":username.current.value,
       "password":password.current.value,
       "verify_password":verifyPassword.current.value,

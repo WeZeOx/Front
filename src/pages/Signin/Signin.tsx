@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import cookies from "js-cookie";
 import { useEditorJWT } from "../../hooks/jwt.store";
+import { baseUrl } from "../../environment/env";
 
 type LoginResponse = {
   state: {
@@ -43,7 +44,7 @@ const Signin: FC<SigninProps> = () => {
   
   const handleSignin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    axios.post<LoginResponse>("http://localhost:3333/api/users/signin/", {
+    axios.post<LoginResponse>(`${baseUrl}/users/signin/`, {
       "email": email.current.value,
       "password": password.current.value
     }).then(({ data }) => handleSuccessfulLogin(data))

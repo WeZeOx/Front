@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import CardCommentModalSettings from "../CardCommentModalSettings/CardCommentModalSettings";
+import { baseUrl } from "../../environment/env";
 
 export type Comment = {
   user_id: string;
@@ -50,21 +51,21 @@ const CardComment: FC<CardCommentProps> = ({
   const adminStore = useEditorAdmin()
 
   const handleLikeComment = () => {
-    axios.patch(`http://localhost:3333/api/comments/like/${comment.comment_id}`)
+    axios.patch(`${baseUrl}/comments/like/${comment.comment_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
     onCommentLike(comment)
   }
   
   const handleunLikeComment = () => {
-    axios.patch(`http://localhost:3333/api/comments/unlike/${comment.comment_id}`)
+    axios.patch(`${baseUrl}/comments/unlike/${comment.comment_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
     onCommentunLike(comment)
   }
   
   const handleDeleteComment = () => {
-    axios.delete(`http://localhost:3333/api/comments/deletecomment/${comment.comment_id}`)
+    axios.delete(`${baseUrl}/comments/deletecomment/${comment.comment_id}`)
       .then(({data}) => data)
       .catch((error) => console.log(error))
     setIdxModalToShow(null)

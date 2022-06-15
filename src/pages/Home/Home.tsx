@@ -7,6 +7,7 @@ import cookies from "js-cookie";
 import SectionSearchCategory from "../../components/SectionSearchCategory/SectionSearchCategory";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
 import FilterPost from "../../components/FilterPost/FilterPost";
+import { baseUrl } from "../../environment/env";
 
 export type Posts = {
   user_id: string,
@@ -55,7 +56,7 @@ const Home: FC<HomeProps> = () => {
   }
   
   useEffect(() => {
-    axios.get<Posts[]>("http://localhost:3333/api/posts/all")
+    axios.get<Posts[]>(`${baseUrl}/posts/all`)
       .then(({ data }) => setPosts(data))
       .catch((err) => console.log(err))
     window.addEventListener('scroll', addMorePost)

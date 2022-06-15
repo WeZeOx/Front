@@ -6,6 +6,7 @@ import { Posts } from "../../pages/Home/Home";
 import PostCreator from "../PostCreator/PostCreator";
 import { useEditorJWT } from "../../hooks/jwt.store";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../environment/env";
 
 type PostInputProps = {
   onPost: (newPost: Posts) => void
@@ -16,7 +17,7 @@ const PostInput: FC<PostInputProps> = ({ onPost }) => {
   const jwtStore = useEditorJWT()
   
   const handleSendPost = (contentPost: string, categoryTag: string) => {
-    axios.post("http://localhost:3333/api/posts/createpost", {
+    axios.post(`${baseUrl}/posts/createpost`, {
       "id": cookies.get("id") ?? "",
       "content": contentPost,
       "category": categoryTag

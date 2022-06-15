@@ -9,6 +9,7 @@ import cookies from "js-cookie";
 import CardPostModalSettings from "../CardPostModalSettings/CardPostModalSettings";
 import { useNavigate } from "react-router-dom";
 import Categories from "../Categories/Categories";
+import { baseUrl } from "../../environment/env";
 
 type CardPostProps = {
   post: Posts
@@ -34,21 +35,21 @@ const CardPost: FC<CardPostProps> = ({
   const navigate = useNavigate()
   
   const handleUnlikePost = () => {
-    axios.patch(`http://localhost:3333/api/posts/unlike/${post.post_id}`)
+    axios.patch(`${baseUrl}/posts/unlike/${post.post_id}`)
       .then(({ data }) => onUnlike(data))
       .catch((err) => console.log(err))
     onUnlike(post)
   }
   
   const handleLikePost = () => {
-    axios.patch(`http://localhost:3333/api/posts/like/${post.post_id}`)
+    axios.patch(`${baseUrl}/posts/like/${post.post_id}`)
       .then(({ data }) => onLike(data))
       .catch((err) => console.log(err))
     onLike(post)
   }
   
   const handleDeletePost = () => {
-    axios.delete(`http://localhost:3333/api/posts/deletepost/${post.post_id}`)
+    axios.delete(`${baseUrl}/posts/deletepost/${post.post_id}`)
       .then(({ data }) => data)
       .catch((err) => console.log(err))
     setIdxModalToShow(null)
