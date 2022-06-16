@@ -1,51 +1,5 @@
 @import "../../globals";
 
-.containerCreateComment {
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  border-left: 2px solid gray;
-  border-right: 2px solid gray;
-  display: flex;
-  background: $backgroundNavbar;
-  word-break: break-all;
-  padding: 10px;
-  width: 42%;
-  margin: 20px auto 0 auto;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: flex-start;
-
-
-  .containerField {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    .contentComment {
-      color: #cea2a2;
-      font-family: "Plus Jakarta Sans", sans-serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin: 8px 12px 7px 15px;
-      width: 70%;
-      background: #202122;
-    }
-    .sendComment {
-      background: none;
-      height: 100%;
-      width: 17%;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: $colorContentPost;
-      border-radius: 20px;
-      padding: 7px;
-      border: 2px solid $backgroundGeneral;
-      font-size: 1.25rem;
-      font-weight: 400;
-    }
-  }
-}
-
 .containerEmpty {
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;

@@ -37,14 +37,14 @@ const CardPost: FC<CardPostProps> = ({
   const handleUnlikePost = () => {
     axios.patch(`${baseUrl}/posts/unlike/${post.post_id}`)
       .then(({ data }) => onUnlike(data))
-      .catch((err) => console.log(err))
+      .catch((err) => err)
     onUnlike(post)
   }
   
   const handleLikePost = () => {
     axios.patch(`${baseUrl}/posts/like/${post.post_id}`)
       .then(({ data }) => onLike(data))
-      .catch((err) => console.log(err))
+      .catch((err) => err)
     onLike(post)
   }
   

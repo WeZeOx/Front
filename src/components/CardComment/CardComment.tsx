@@ -53,21 +53,21 @@ const CardComment: FC<CardCommentProps> = ({
   const handleLikeComment = () => {
     axios.patch(`${baseUrl}/comments/like/${comment.comment_id}`)
       .then(({ data }) => data)
-      .catch((err) => console.log(err))
+      .catch((err) => err)
     onCommentLike(comment)
   }
   
   const handleunLikeComment = () => {
     axios.patch(`${baseUrl}/comments/unlike/${comment.comment_id}`)
       .then(({ data }) => data)
-      .catch((err) => console.log(err))
+      .catch((err) => err)
     onCommentunLike(comment)
   }
   
   const handleDeleteComment = () => {
     axios.delete(`${baseUrl}/comments/deletecomment/${comment.comment_id}`)
       .then(({data}) => data)
-      .catch((error) => console.log(error))
+      .catch((err) => console.log(err))
     setIdxModalToShow(null)
     onDeleteComment(comment.comment_id)
   }

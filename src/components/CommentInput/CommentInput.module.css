@@ -39,28 +39,21 @@ a {
   text-decoration: none;
 }
 
-.containerEmpty {
+.containerNotConnected {
+  display: flex;
+  justify-content: center;
+  color: #cea2a2;
+  font-size: 1.5rem;
+  padding-block: 5px;
+  background: #202122;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
   border-left: 2px solid gray;
   border-right: 2px solid gray;
-  display: flex;
-  background: #202122;
-  word-break: break-all;
-  padding: 10px;
   width: 42%;
-  margin: 0 auto;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-.containerEmpty .titleEmpty {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  margin: 20px auto 0 auto;
   text-align: center;
-  font-size: 1.2rem;
-  color: #cea2a2;
+  padding: 5px;
 }
 
-/*# sourceMappingURL=SinglePost.module.css.map */
+/*# sourceMappingURL=CommentInput.module.css.map */

@@ -9,6 +9,7 @@ import Avvvatars from "avvvatars-react";
 import cookies from "js-cookie";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
 import { baseUrl } from "../../environment/env";
+import CommentInput from "../../components/CommentInput/CommentInput";
 
 type MyProps = {}
 
@@ -56,8 +57,8 @@ const SinglePost: FC<MyProps> = () => {
       "post_id": postId,
       "content_comment": contentComment
     }).then(({ data: newComment }) => {
-      setComments((prevState) => prevState?.length > 0 ? [...prevState, newComment] : [newComment])
-    }).catch((err) => console.log(err))
+      setComments((prevState) => prevState?.length > 0 ? [newComment, ...prevState] : [newComment])
+    }).catch((err) => err)
     setContentComment("")
   }
   
@@ -83,17 +84,12 @@ const SinglePost: FC<MyProps> = () => {
             onUnlike={(post: Posts) => setPost(post)}
           />
 
-          <div className={css.containerCreateComment}>
-            <div className={css.containerField}>
-              <Avvvatars value={cookies.get('username') ?? ""} style="shape"/>
-              <input
-                placeholder="Any comment ?!"
-                className={css.contentComment} value={contentComment}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setContentComment(e.target.value)}
-              />
-              <button onClick={handleNewComment} className={css.sendComment}>Send</button>
-            </div>
-          </div>
+          <CommentInput
+            contentComment={contentComment}
+            setContentComment={setContentComment}
+            handleNewComment={handleNewComment}
+          />
+          
           {comments?.length ? comments?.map((comment: Comments, idx: number) => (
             <CardComment
               onDeleteComment={(commentId: string) => onDeleteComment(commentId)}
