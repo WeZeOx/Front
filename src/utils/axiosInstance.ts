@@ -9,7 +9,7 @@ export const axiosInterceptor = (token: string) => {
     config.headers["Authorization"] = token;
     config.headers["Content-Type"] = "application/json";
     return config;
-  }, (error) => {
+  }, (error: any) => {
     return Promise.reject(error);
   })
 }

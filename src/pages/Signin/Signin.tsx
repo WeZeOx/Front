@@ -42,14 +42,18 @@ const Signin: FC<SigninProps> = () => {
     navigate("/home")
   }
   
-  const handleSignin = (e: FormEvent<HTMLFormElement>) => {
+  const handleSignin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    axios.post<LoginResponse>(`${baseUrl}/users/signin/`, {
+    await axios.post<LoginResponse>(`${baseUrl}/users/signin/`, {
       "email": email.current.value,
       "password": password.current.value
     }).then(({ data }) => handleSuccessfulLogin(data))
       .catch((err) => setErrorMessage(err.response.data.message))
   }
+
+  // useEffect(() => {
+  //   console.log(errorMessage)
+  // }, [errorMessage])
   
   return (
     <>

@@ -8,8 +8,8 @@ import CardComment, { Comment } from "../../components/CardComment/CardComment";
 import Avvvatars from "avvvatars-react";
 import cookies from "js-cookie";
 import { useEditorAdmin } from "../../hooks/isadmin.store";
-import { baseUrl } from "../../environment/env";
 import CommentInput from "../../components/CommentInput/CommentInput";
+import { baseUrl } from "../../environment/env";
 
 type MyProps = {}
 

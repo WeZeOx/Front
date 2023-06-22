@@ -59,7 +59,7 @@ const CardPost: FC<CardPostProps> = ({
   
   return (
     <div className={css.containerChildPost}
-         style={{ marginTop: window.location.href.split('/').includes('post') ? 40 : 0 }}>
+         style={{ marginTop: window.location.href.split('/')?.includes('post') ? 40 : 0 }}>
       <div className={css.whoami}>
         <Avvvatars style="shape" value={post?.username ?? ""}/>
         <div className={css.contentUser}>

@@ -27,7 +27,7 @@ const Categories: FC<DisplayCategoriesProps> = ({ post, onPostLike, onPostUnlike
       
       <div className={css.container}>
         <div className={css.like}>
-            <span className={css.iconLike}>{post?.like?.split(',').includes(cookies.get('id') ?? "") ?
+            <span className={css.iconLike}>{post?.like?.split(',')?.includes(cookies.get('id') ?? "") ?
               <FontAwesomeIcon icon={faHeart} onClick={handleunLike}/> :
               <AiOutlineHeart onClick={handleLike}/>
             }

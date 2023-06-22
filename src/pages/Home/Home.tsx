@@ -78,14 +78,14 @@ const Home: FC<HomeProps> = () => {
       />
       <div className={css.containerPost}>
         {posts
-          .sort((a: Posts, b: Posts) => {
+          ?.sort((a: Posts, b: Posts) => {
             if (filter === "MOST_LIKE") return b.like.split(',').length - a.like.split(',').length
             else if (filter === "OLD_POST") return new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
             else return new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
           })
-          .slice(0, numberOfPost)
-          .map((post: Posts, idx: number) => (
-            post.categories.includes(contentSearch) &&
+          ?.slice(0, numberOfPost)
+          ?.map((post: Posts, idx: number) => (
+            post.categories?.includes(contentSearch) &&
             <CardPost
               indexCardPost={idx}
               idxModalToShow={idxModalToShow}

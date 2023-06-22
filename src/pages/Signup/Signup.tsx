@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import cookies from "js-cookie";
 import { useEditorJWT } from "../../hooks/jwt.store";
-import { Simulate } from "react-dom/test-utils";
-import canPlay = Simulate.canPlay;
 import { baseUrl } from "../../environment/env";
 
 type stateResponse = {
